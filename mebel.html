@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="mebel">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мебель на заказ — салон и онлайн-конфигуратор</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .configurator { margin-top: 24px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .configurator iframe { width: 100%; height: 520px; border: 0; display: block; background: #0f0f11; }
+    .fallback { padding: 40px; text-align: center; background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); }
+    .fallback a { color: var(--accent); text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo"><a href="index.html">← Портфолио</a> / Мебель на заказ</div>
+    <nav class="nav">
+      <a href="index.html">Главная</a>
+      <a href="it.html">IT</a>
+      <a href="konstruktor.html">Конструкторы</a>
+      <a href="fanera.html">Домокомплекты</a>
+      <a href="stroitelstvo.html">Строительство</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Мебель на заказ</h1>
+  <p>Корпусная, встроенная, кухонная и детская мебель по индивидуальным размерам. Франшиза «Командор», онлайн-конфигуратор и замер под ключ.</p>
+  <a class="btn" href="https://komandor-nsk.ru/" target="_blank">Сайт салона</a>
+  <a class="btn btn-outline" href="https://www.instagram.com/vsepopolkam.nsk/" target="_blank">Витрина «Всё по полкам»</a>
+</section>
+
+<main class="container">
+  <h2 class="section-title">3D-конфигуратор</h2>
+  <p>Выберите конфигурацию, материалы, фурнитуру и получите визуализацию и расчёт стоимости онлайн. Если конфигуратор не загружается ниже, откройте его по прямой ссылке.</p>
+  <a class="btn" href="https://site.outline3d.ru/" target="_blank" style="margin-top:12px">Открыть конфигуратор в новой вкладке</a>
+
+  <div class="configurator">
+    <iframe src="https://site.outline3d.ru/" title="Outline3D конфигуратор" loading="lazy"></iframe>
+  </div>
+
+  <h2 class="section-title" style="margin-top:40px">Услуги</h2>
+  <div class="features">
+    <div class="feature">
+      <h4>Замер и дизайн</h4>
+      <p>Выезд на объект, точные замеры, подготовка эскиза и 3D-визуализации. Учитываем инженерные коммуникации и особенности помещения.</p>
+    </div>
+    <div class="feature">
+      <h4>Производство</h4>
+      <p>Собственное производство по франшизе «Командор». ЛДСП, МДФ, шпон, массив, кварцевые столешницы.</p>
+    </div>
+    <div class="feature">
+      <h4>Доставка и сборка</h4>
+      <p>Доставка по Новосибирску и области. Сборка и установка опытными бригадами с гарантией.</p>
+    </div>
+    <div class="feature">
+      <h4>Гарантия и сервис</h4>
+      <p>Гарантия на мебель и фурнитуру. Постгарантийное обслуживание, замена комплектующих.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:40px">Почему заказывают здесь</h2>
+  <div class="features">
+    <div class="feature">
+      <h4>Онлайн-конфигуратор</h4>
+      <p>Можно собрать шкаф или кухню прямо на сайте, увидеть цену и сразу отправить заявку. Экономит время и снимает неопределённость.</p>
+    </div>
+    <div class="feature">
+      <h4>Связь с конструкторами</h4>
+      <p>Если проект сложный, конструкторы в штате детализируют модель, подготовят производственные документы и сопроводят сборку.</p>
+    </div>
+    <div class="feature">
+      <h4>Цифровой контроль заказа</h4>
+      <p>IT-направление обеспечивает прозрачность: статус заказа, сроки, комплектация — всё под контролем.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:40px">Связанные направления</h2>
+  <div class="grid">
+    <a class="card" href="it.html">
+      <h3>IT-разработка</h3>
+      <p>Технологии, которые стоят за конфигуратором и автоматизацией заказов. Разработка под ключ.</p>
+      <div class="meta">Перейти →</div>
+    </a>
+    <a class="card" href="konstruktor.html">
+      <h3>Конструкторы</h3>
+      <p>Проектирование мебели в БАЗИСе, деталировка, раскрой и управляющие программы для ЧПУ.</p>
+      <div class="meta">Перейти →</div>
+    </a>
+    <a class="card" href="fanera.html">
+      <h3>Домокомплекты</h3>
+      <p>Для нестандартных решений: мебель из фанеры, малые архитектурные формы, детские домики.</p>
+      <div class="meta">Перейти →</div>
+    </a>
+  </div>
+</main>
+
+<footer class="footer" id="contacts">
+  <p>Мебель на заказ — салон «Командор» и онлайн-конфигуратор.</p>
+  <p style="margin-top:8px; opacity:.7">komandor-nsk.ru | Instagram: @vsepopolkam.nsk</p>
+  <p style="margin-top:12px"><a href="index.html">← Вернуться на портал</a></p>
+</footer>
+
+</body>
+</html>
