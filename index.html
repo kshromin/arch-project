@@ -3,101 +3,240 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Портфолио и услуги</title>
+  <title>Архитектура Проекта — IT-разработка и цифровизация производства</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .portal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
-    .portal-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 32px;
-      transition: transform .25s, box-shadow .25s, border-color .25s;
-      display: flex; flex-direction: column; gap: 14px;
+    .hero-accent {
+      background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .portal-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--surface-hover); }
-    .portal-card .tag {
-      display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-      padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.06); color: var(--text-secondary);
-    }
-    .portal-card.it .tag { color: #60a5fa; background: rgba(59,130,246,0.12); }
-    .portal-card.konstr .tag { color: #fbbf24; background: rgba(245,158,11,0.12); }
-    .portal-card.meb .tag { color: #fb923c; background: rgba(217,119,87,0.12); }
-    .portal-card.fan .tag { color: #facc15; background: rgba(234,179,8,0.12); }
-    .portal-card.str .tag { color: #4ade80; background: rgba(34,197,94,0.12); }
-    .portal-card h2 { font-size: 1.35rem; font-weight: 800; }
-    .portal-card p { color: var(--text-secondary); font-size: 0.95rem; flex: 1; }
-    .portal-card .arrow { margin-top: 8px; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
-    .portal-card.it .arrow { color: #60a5fa; }
-    .portal-card.konstr .arrow { color: #fbbf24; }
-    .portal-card.meb .arrow { color: #fb923c; }
-    .portal-card.fan .arrow { color: #facc15; }
-    .portal-card.str .arrow { color: #4ade80; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+    .phone-link { font-size: 1.3rem; font-weight: 700; color: #fff; }
+    .phone-link:hover { color: var(--accent); }
+
+    /* SVG-иконки для фич */
+    .feature-icon-blue { background: linear-gradient(135deg, #e8f0fe, #d4e2fc); color: var(--accent); }
+    .feature-icon-purple { background: linear-gradient(135deg, #f3e8ff, #e9d5ff); color: #7c3aed; }
+    .feature-icon-green { background: linear-gradient(135deg, #dcfce7, #bbf7d0); color: #16a34a; }
+    .feature-icon-orange { background: linear-gradient(135deg, #ffedd5, #fed7aa); color: #ea580c; }
+
+    /* Карточки с цветными бордерами */
+    .card-accent-blue::before { background: linear-gradient(90deg, #2f6fed, #7c3aed); }
+    .card-accent-purple::before { background: linear-gradient(90deg, #7c3aed, #ec4899); }
+    .card-accent-green::before { background: linear-gradient(90deg, #16a34a, #22c55e); }
   </style>
 </head>
 <body>
 
 <header class="header">
   <div class="header-inner">
-    <div class="logo">Портфолио и услуги</div>
+    <div class="logo">Архитектура Проекта</div>
     <nav class="nav">
-      <a href="it.html">IT</a>
-      <a href="konstruktor.html">Конструкторы</a>
-      <a href="mebel.html">Мебель</a>
-      <a href="fanera.html">Домокомплекты</a>
-      <a href="stroitelstvo.html">Строительство</a>
+      <a href="#services">Услуги</a>
+      <a href="#why">Почему мы</a>
+      <a href="#process">Процесс</a>
+      <a href="#contacts">Контакты</a>
     </nav>
   </div>
 </header>
 
+<!-- Hero -->
 <section class="hero">
-  <h1>Комплексные решения: от архитектуры ПО до готового дома</h1>
-  <p>Выберите направление. Каждое — с отдельной экспертизой, но связано общей идеей: продуманная архитектура на каждом этапе.</p>
+  <div class="hero-split">
+    <div class="hero-text">
+      <h1 class="animate">IT-разработка <span class="hero-accent">с пониманием производства</span></h1>
+      <p class="animate delay-1">Разрабатываем 3D-конфигураторы, веб-приложения и системы автоматизации для фабрик, дилеров и производителей. Знаем, как устроен цикл от заявки до отгрузки — потому что сами проходим его каждый день.</p>
+      <div class="hero-btns animate delay-2">
+        <a class="btn" href="#form">Обсудить проект</a>
+        <a class="btn btn-outline" href="#cases">Посмотреть кейсы</a>
+      </div>
+    </div>
+    <div class="hero-media animate delay-2">
+      <img src="img/it/hero.png" alt="Интерфейс 3D-конфигуратора мебели: размеры, материалы, 3D-модель шкафа">
+    </div>
+  </div>
 </section>
 
 <main class="container">
-  <div class="portal-grid">
 
-    <a href="it.html" class="portal-card it">
-      <span class="tag">Основное направление</span>
-      <h2>Архитектура Проекта — IT</h2>
-      <p>Разработка 3D-конфигураторов, веб-приложений и цифровых продуктов. Полный цикл: от идеи до развёртывания.</p>
-      <div class="arrow">Подробнее →</div>
-    </a>
+  <!-- Services -->
+  <section id="services">
+    <h2 class="section-title animate">Услуги</h2>
+    <p class="section-subtitle animate delay-1">Что мы делаем для бизнеса</p>
+    <div class="features">
+      <div class="feature animate delay-1">
+        <div class="feature-icon feature-icon-blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        </div>
+        <h4>3D-конфигураторы</h4>
+        <p>Интерактивные онлайн-конструкторы для мебели, интерьеров и промышленных изделий. Параметрическая геометрия, реалистичные материалы, расчёт цены в реальном времени.</p>
+      </div>
+      <div class="feature animate delay-2">
+        <div class="feature-icon feature-icon-purple">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        </div>
+        <h4>Веб-разработка</h4>
+        <p>Лендинги, корпоративные сайты, личные кабинеты, порталы. От прототипа до публикации с учётом SEO, скорости и мобильной адаптивности.</p>
+      </div>
+      <div class="feature animate delay-3">
+        <div class="feature-icon feature-icon-green">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+        </div>
+        <h4>Интеграция и API</h4>
+        <p>Связка сайтов с 1С, CRM, ERP, производственными системами. Автоматизация обмена заказами, складом и документооборотом.</p>
+      </div>
+      <div class="feature animate delay-4">
+        <div class="feature-icon feature-icon-orange">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        </div>
+        <h4>Автоматизация бизнеса</h4>
+        <p>Цифровизация процессов: от онлайн-заявки до задания на производство. Убираем ручной труд, сокращаем ошибки, ускоряем обработку.</p>
+      </div>
+    </div>
+  </section>
 
-    <a href="konstruktor.html" class="portal-card konstr">
-      <span class="tag">Конструкторские услуги</span>
-      <h2>Проектирование и БАЗИС</h2>
-      <p>Услуги конструкторов: мебельное проектирование, технологическая подготовка производства, базы и спецификации.</p>
-      <div class="arrow">Подробнее →</div>
-    </a>
+  <hr class="section-divider">
 
-    <a href="mebel.html" class="portal-card meb">
-      <span class="tag">Мебель на заказ</span>
-      <h2>Мебельный салон</h2>
-      <p>Корпусная мебель по индивидуальным размерам. Франшиза Командор, онлайн-конфигуратор, замер и установка.</p>
-      <div class="arrow">Подробнее →</div>
-    </a>
+  <!-- Why us -->
+  <section id="why">
+    <h2 class="section-title animate">Почему обращаются к нам</h2>
+    <p class="section-subtitle animate delay-1">Не просто кодеры — люди из производства</p>
+    <div class="grid">
+      <div class="card card-accent-blue animate delay-1">
+        <h3>Не просто разработчики</h3>
+        <p>Мы сами работаем с мебельным производством, конструкторами и строителями. Понимаем, что такое раскрой ЛДСП, деталировка и управляющие программы для ЧПУ.</p>
+      </div>
+      <div class="card card-accent-purple animate delay-2">
+        <h3>Готовый продукт как доказательство</h3>
+        <p>Наш 3D-конфигуратор мебели — не теория, а рабочий инструмент. Мы используем его в соседнем направлении и можем сделать подобный для вас.</p>
+      </div>
+      <div class="card card-accent-green animate delay-3">
+        <h3>Масштабируемость</h3>
+        <p>Решения растут вместе с бизнесом. От первого лендинга до полноценной фабрики с ERP, CRM и 3D-визуализацией.</p>
+      </div>
+    </div>
+  </section>
 
-    <a href="fanera.html" class="portal-card fan">
-      <span class="tag">Домокомплекты</span>
-      <h2>Дома из фанеры</h2>
-      <p>Современные домокомплекты от производственного партнёра. Быстрая сборка, экологичные материалы.</p>
-      <div class="arrow">Подробнее →</div>
-    </a>
+  <hr class="section-divider">
 
-    <a href="stroitelstvo.html" class="portal-card str">
-      <span class="tag">Строительство</span>
-      <h2>Строительные партнёры</h2>
-      <p>Строительно-монтажные работы, отделка и реализация проектов «под ключ» с проверенными подрядчиками.</p>
-      <div class="arrow">Подробнее →</div>
-    </a>
+  <!-- Process -->
+  <section id="process">
+    <h2 class="section-title animate">Как мы работаем</h2>
+    <p class="section-subtitle animate delay-1">От идеи до запуска — честно и прозрачно</p>
+    <div class="steps">
+      <div class="step animate delay-1">
+        <h4>Аудит и архитектура</h4>
+        <p>Изучаем бизнес-процессы, проектируем структуру системы и выбираем технологический стек. Фиксируем требования до начала разработки.</p>
+      </div>
+      <div class="step animate delay-2">
+        <h4>Прототип и дизайн</h4>
+        <p>Делаем наброски интерфейсов, схемы данных, пайплайн интеграций. Согласовываем каждое решение до первой строчки кода.</p>
+      </div>
+      <div class="step animate delay-3">
+        <h4>Разработка</h4>
+        <p>Кодим бэкенд, фронтенд, настраиваем интеграции. Показываем промежуточные сборки каждую неделю — вы видите прогресс.</p>
+      </div>
+      <div class="step animate delay-4">
+        <h4>Запуск и поддержка</h4>
+        <p>Разворачиваем, обучаем сотрудников, мониторим стабильность. Дорабатываем по реальному использованию и обратной связи.</p>
+      </div>
+    </div>
+  </section>
 
+  <hr class="section-divider">
+
+  <!-- Cases -->
+  <section id="cases">
+    <h2 class="section-title animate">Кейсы</h2>
+    <p class="section-subtitle animate delay-1">Проекты, которые мы разработали и используем сами.</p>
+    <div class="grid">
+      <div class="card card-accent-purple animate delay-1">
+        <span class="tag">В разработке</span>
+        <h3>3D-конфигуратор мебели</h3>
+        <p>Параметрический онлайн-конструктор шкафов, кухонь и гардеробных. Three.js, расчёт цены в реальном времени, интеграция с БАЗИС-Мебельщик.</p>
+        <div class="meta">Скоро в открытом доступе</div>
+      </div>
+      <div class="card card-accent-blue animate delay-2">
+        <span class="tag tag-accent">Автоматизация</span>
+        <h3>Мебельный салон «Командор» НСК</h3>
+        <p>Лендинг, онлайн-конфигуратор, корзина заказов. Полный цикл от заявки клиента до передачи в производство.</p>
+        <div class="meta"><a href="mebel.html">Подробнее →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form -->
+  <section id="form" class="form-section animate">
+    <h2>Обсудить проект</h2>
+    <p>Оставьте заявку — свяжемся в течение дня. Без спама, только по делу.</p>
+    <form action="https://docs.google.com/forms/d/e/ВАШ_ID_ФОРМЫ/viewform" method="GET" target="_blank">
+      <div class="form-grid">
+        <input type="text" name="entry.ВАШ_ПОЛЕ_ИМЯ" class="form-field" placeholder="Ваше имя" required>
+        <input type="tel" name="entry.ВАШ_ПОЛЕ_ТЕЛЕФОН" class="form-field" placeholder="Телефон" required>
+        <input type="email" name="entry.ВАШ_ПОЛЕ_EMAIL" class="form-field" placeholder="Email (необязательно)">
+        <textarea name="entry.ВАШ_ПОЛЕ_СООБЩЕНИЕ" class="form-field textarea" placeholder="Расскажите о задаче: что нужно, сроки, бюджет"></textarea>
+      </div>
+      <button type="submit" class="btn">Отправить заявку</button>
+      <p style="margin-top:12px; font-size:0.85rem; opacity:0.6;">Форма подключена к Google Forms. После отправки откроется подтверждение.</p>
+    </form>
+  </section>
+
+  <!-- Also we do -->
+  <div class="also-section animate">
+    <h2>Также мы делаем</h2>
+    <p>Другие направления — со своими контактами и экспертизой.</p>
+    <div class="also-grid">
+      <a href="konstruktor.html" class="also-card">
+        <h4>Проектирование и деталировка</h4>
+        <p>Проектирование в БАЗИСе, деталировка, программы ЧПУ</p>
+      </a>
+      <a href="mebel.html" class="also-card">
+        <h4>Мебель на заказ</h4>
+        <p>Салон «Командор», Новосибирск. Замер, проект, монтаж.</p>
+      </a>
+      <a href="fanera.html" class="also-card">
+        <h4>Домокомплекты из фанеры</h4>
+        <p>Модульные дома. Экологично, быстро, точно.</p>
+      </a>
+      <a href="stroitelstvo.html" class="also-card">
+        <h4>Строительство</h4>
+        <p>Отделка, инженерия, проекты «под ключ» с партнёрами.</p>
+      </a>
+    </div>
   </div>
+
 </main>
 
-<footer class="footer">
-  © 2025 — Портфолио и услуги. Все направления работают как единая экосистема.
+<!-- Contacts -->
+<footer class="footer" id="contacts">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Архитектура Проекта</h4>
+        <p>IT-разработка и цифровизация производства.</p>
+        <p>Новосибирск, работаем по всей России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Связаться</h4>
+        <a href="tel:+7XXXXXXXXXX" class="phone-link">+7 (XXX) XXX-XX-XX</a>
+        <a href="mailto:it@archproject.ru">it@archproject.ru</a>
+        <a href="https://t.me/xxxx" target="_blank">Telegram</a>
+      </div>
+      <div class="footer-col">
+        <h4>Навигация</h4>
+        <a href="index.html">IT-разработка</a>
+        <a href="konstruktor.html">Проектирование</a>
+        <a href="mebel.html">Мебель</a>
+        <a href="fanera.html">Домокомплекты</a>
+        <a href="stroitelstvo.html">Строительство</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Архитектура Проекта. Все направления — независимые лендинги со своими контактами.
+    </div>
+  </div>
 </footer>
 
 </body>

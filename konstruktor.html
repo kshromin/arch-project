@@ -1,114 +1,219 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="konstruktor">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Конструкторские услуги — проектирование в БАЗИС</title>
+  <title>Проектирование и деталировка — мебель, БАЗИС, ЧПУ</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .hero-accent {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+    .phone-link { font-size: 1.3rem; font-weight: 700; color: #fff; }
+    .phone-link:hover { color: var(--accent); }
+
+    .feature-icon-orange { background: linear-gradient(135deg, #ffedd5, #fed7aa); color: #ea580c; }
+    .feature-icon-blue { background: linear-gradient(135deg, #e8f0fe, #d4e2fc); color: var(--accent); }
+    .feature-icon-green { background: linear-gradient(135deg, #dcfce7, #bbf7d0); color: #16a34a; }
+    .feature-icon-purple { background: linear-gradient(135deg, #f3e8ff, #e9d5ff); color: #7c3aed; }
+
+    .card-accent-orange::before { background: linear-gradient(90deg, #f59e0b, #ea580c); }
+    .card-accent-blue::before { background: linear-gradient(90deg, #2f6fed, #7c3aed); }
+    .card-accent-green::before { background: linear-gradient(90deg, #16a34a, #22c55e); }
+
+    .btn-orange { background: linear-gradient(135deg, #f59e0b, #ea580c); box-shadow: 0 4px 16px rgba(234,88,12,0.35); }
+    .btn-orange:hover { box-shadow: 0 8px 24px rgba(234,88,12,0.45); }
+  </style>
 </head>
 <body>
 
 <header class="header">
   <div class="header-inner">
-    <div class="logo"><a href="index.html">← Портфолио</a> / Конструкторские услуги</div>
+    <div class="logo">Проектирование и деталировка</div>
     <nav class="nav">
-      <a href="index.html">Главная</a>
-      <a href="it.html">IT</a>
-      <a href="mebel.html">Мебель</a>
-      <a href="fanera.html">Домокомплекты</a>
-      <a href="stroitelstvo.html">Строительство</a>
+      <a href="#services">Услуги</a>
+      <a href="#why">Преимущества</a>
+      <a href="#process">Процесс</a>
+      <a href="#contacts">Контакты</a>
     </nav>
   </div>
 </header>
 
 <section class="hero">
-  <h1>Проектирование и технологическая подготовка</h1>
-  <p>В штате — два конструктора. Проектируем корпусную мебель, малые архитектурные формы и изделия из древесных плит. Работаем в БАЗИС-Мебельщик и смежных системах.</p>
-  <a class="btn" href="#contacts">Заказать проект</a>
-  <a class="btn btn-outline" href="mebel.html">Посмотреть мебельное направление</a>
+  <div class="hero-split">
+    <div class="hero-text">
+      <h1 class="animate">Проектирование и технологическая <span class="hero-accent">подготовка</span></h1>
+      <p class="animate delay-1">Собственное конструкторское бюро. Проектируем корпусную мебель, малые архитектурные формы и изделия из древесных плит. Работаем в БАЗИС-Мебельщик и смежных системах.</p>
+      <div class="hero-btns animate delay-2">
+        <a class="btn btn-orange" href="#form">Обсудить проект</a>
+        <a class="btn btn-outline" href="mebel.html">Мебельное направление</a>
+      </div>
+    </div>
+    <div class="hero-media animate delay-2">
+      <img src="img/konstruktor/hero.png" alt="CAD-модель корпусной мебели: сборочный чертёж, деталировка, спецификация">
+    </div>
+  </div>
 </section>
 
 <main class="container">
-  <h2 class="section-title">Что делаем</h2>
-  <div class="features">
-    <div class="feature">
-      <h4>Мебельное проектирование</h4>
-      <p>Корпусная, встроенная, кухонная и офисная мебель. Чертежи, спецификации, деталировка, схемы сборки.</p>
+
+  <div class="photo-wide animate">
+    <img src="img/konstruktor/g1.png" alt="Рабочее место конструктора мебели: чертежи, 3D-модель шкафа, измерительный инструмент">
+  </div>
+
+  <section id="services">
+    <h2 class="section-title animate">Что делаем</h2>
+    <p class="section-subtitle animate delay-1">Полный цикл от эскиза до управляющих программ</p>
+    <div class="features">
+      <div class="feature animate delay-1">
+        <div class="feature-icon feature-icon-orange">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"></path></svg>
+        </div>
+        <h4>Мебельное проектирование</h4>
+        <p>Корпусная, встроенная, кухонная и офисная мебель. Чертежи, спецификации, деталировка, схемы сборки.</p>
+      </div>
+      <div class="feature animate delay-2">
+        <div class="feature-icon feature-icon-blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        </div>
+        <h4>БАЗИС-Мебельщик</h4>
+        <p>Полный цикл: от эскиза до производственных карт и управляющих программ для станков с ЧПУ.</p>
+      </div>
+      <div class="feature animate delay-3">
+        <div class="feature-icon feature-icon-green">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10M18 20V4M6 20v-4"></path></svg>
+        </div>
+        <h4>Технологическая подготовка</h4>
+        <p>Раскрой, оптимизация материала, присадочные карты, схемы кромления, ведомости фурнитуры.</p>
+      </div>
+      <div class="feature animate delay-4">
+        <div class="feature-icon feature-icon-purple">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        </div>
+        <h4>Сопровождение производства</h4>
+        <p>Консультации на сборке, корректировки по замерам, внесение изменений в серию.</p>
+      </div>
     </div>
-    <div class="feature">
-      <h4>БАЗИС-Мебельщик</h4>
-      <p>Полный цикл: от эскиза до производственных карт и управляющих программ для станков с ЧПУ.</p>
+  </section>
+
+  <hr class="section-divider">
+
+  <section id="why">
+    <h2 class="section-title animate">Почему с нами</h2>
+    <p class="section-subtitle animate delay-1">Собственное бюро, не аутсорс</p>
+    <div class="grid">
+      <div class="card card-accent-orange animate delay-1">
+        <h3>Гибкость загрузки</h3>
+        <p>Масштабируем объём работ под ваши задачи: от разового проекта до постоянного сопровождения производства.</p>
+      </div>
+      <div class="card card-accent-blue animate delay-2">
+        <h3>Готовые управляющие программы</h3>
+        <p>Отдаём файлы, которые загружаются сразу в оборудование. Минимум ручной работы на производстве.</p>
+      </div>
+      <div class="card card-accent-green animate delay-3">
+        <h3>Связь с цифровыми каналами</h3>
+        <p>Наше IT-направление помогает автоматизировать приём заявок и передавать их в проектирование без потерь.</p>
+      </div>
     </div>
-    <div class="feature">
-      <h4>Технологическая подготовка</h4>
-      <p>Раскрой, оптимизация материала, присадочные карты, схемы кромления, ведомости фурнитуры.</p>
+  </section>
+
+  <hr class="section-divider">
+
+  <section id="process">
+    <h2 class="section-title animate">Пример процесса</h2>
+    <p class="section-subtitle animate delay-1">От замера до производства</p>
+    <div class="steps">
+      <div class="step animate delay-1">
+        <h4>Замер и эскиз</h4>
+        <p>Собираем пожелания по стилю, материалам и фурнитуре. Делаем примерный расклад и бюджет.</p>
+      </div>
+      <div class="step animate delay-2">
+        <h4>3D-модель и согласование</h4>
+        <p>Строим модель в БАЗИСе, визуализируем, корректируем по замечаниям заказчика.</p>
+      </div>
+      <div class="step animate delay-3">
+        <h4>Деталировка и раскрой</h4>
+        <p>Готовим производственные документы, карты раскроя и управляющие программы для станков.</p>
+      </div>
+      <div class="step animate delay-4">
+        <h4>Сопровождение сборки</h4>
+        <p>Консультируем сборщиков, вносим оперативные правки при нюансах на объекте.</p>
+      </div>
     </div>
-    <div class="feature">
-      <h4>Сопровождение производства</h4>
-      <p>Консультации на сборке, корректировки по замерам, внесение изменений в серию.</p>
+  </section>
+
+  <!-- Form -->
+  <section id="form" class="form-section animate">
+    <h2>Обсудить проект</h2>
+    <p>Оставьте заявку — свяжемся в течение дня. Без спама, только по делу.</p>
+    <form action="https://docs.google.com/forms/d/e/ВАШ_ID_ФОРМЫ/viewform" method="GET" target="_blank">
+      <div class="form-grid">
+        <input type="text" name="entry.ВАШ_ПОЛЕ_ИМЯ" class="form-field" placeholder="Ваше имя" required>
+        <input type="tel" name="entry.ВАШ_ПОЛЕ_ТЕЛЕФОН" class="form-field" placeholder="Телефон" required>
+        <input type="email" name="entry.ВАШ_ПОЛЕ_EMAIL" class="form-field" placeholder="Email (необязательно)">
+        <textarea name="entry.ВАШ_ПОЛЕ_СООБЩЕНИЕ" class="form-field textarea" placeholder="Расскажите о задаче: что нужно спроектировать, сроки"></textarea>
+      </div>
+      <button type="submit" class="btn btn-orange">Отправить заявку</button>
+      <p style="margin-top:12px; font-size:0.85rem; opacity:0.6;">Форма подключена к Google Forms. После отправки откроется подтверждение.</p>
+    </form>
+  </section>
+
+  <div class="also-section animate">
+    <h2>Другие направления</h2>
+    <p>Отдельные лендинги со своими контактами.</p>
+    <div class="also-grid">
+      <a href="index.html" class="also-card">
+        <h4>IT-разработка</h4>
+        <p>Архитектура Проекта — конфигураторы, автоматизация</p>
+      </a>
+      <a href="mebel.html" class="also-card">
+        <h4>Мебель на заказ</h4>
+        <p>Салон Командор НСК</p>
+      </a>
+      <a href="fanera.html" class="also-card">
+        <h4>Домокомплекты</h4>
+        <p>Модульные дома из фанеры</p>
+      </a>
+      <a href="stroitelstvo.html" class="also-card">
+        <h4>Строительство</h4>
+        <p>Отделка, инженерия, под ключ</p>
+      </a>
     </div>
   </div>
 
-  <h2 class="section-title" style="margin-top:40px">Почему это выгодно</h2>
-  <div class="features">
-    <div class="feature">
-      <h4>Без содержания в штате</h4>
-      <p>Получаете услуги конструктора тогда, когда нужно: на пике загрузки или при старте новой линейки.</p>
-    </div>
-    <div class="feature">
-      <h4>Готовые управляющие программы</h4>
-      <p>Не нужен программист станка — мы отдаём файлы, которые загружаются сразу в оборудование.</p>
-    </div>
-    <div class="feature">
-      <h4>Связь с цифровыми каналами</h4>
-      <p>Наше IT-направление помогает автоматизировать приём заявок и передавать их в проектирование без потерь.</p>
-    </div>
-  </div>
-
-  <h2 class="section-title" style="margin-top:40px">Пример процесса</h2>
-  <div class="steps">
-    <div class="step">
-      <h4>Замер и эскиз</h4>
-      <p>Собираем пожелания по стилю, материалам и фурнитуре. Делаем примерный расклад и бюджет.</p>
-    </div>
-    <div class="step">
-      <h4>3D-модель и согласование</h4>
-      <p>Строим модель в БАЗИСе, визуализируем, корректируем по замечаниям.</p>
-    </div>
-    <div class="step">
-      <h4>Деталировка и раскрой</h4>
-      <p>Готовим производственные документы, карты раскроя и управляющие программы.</p>
-    </div>
-    <div class="step">
-      <h4>Сопровождение сборки</h4>
-      <p>Консультируем сборщиков, вносим оперативные правки при нюансах на объекте.</p>
-    </div>
-  </div>
-
-  <h2 class="section-title" style="margin-top:40px">Связанные направления</h2>
-  <div class="grid">
-    <a class="card" href="it.html">
-      <h3>IT-разработка</h3>
-      <p>Автоматизация приёма заказов и передачи их в проектирование. Конфигураторы, интеграции, CRM.</p>
-      <div class="meta">Перейти →</div>
-    </a>
-    <a class="card" href="mebel.html">
-      <h3>Мебель на заказ</h3>
-      <p>Готовый канал продаж, где конструкторы вписываются в полный цикл от замера до монтажа.</p>
-      <div class="meta">Перейти →</div>
-    </a>
-    <a class="card" href="fanera.html">
-      <h3>Домокомплекты</h3>
-      <p>Для сложных изделий из фанеры: раскрой, взаимозаменяемость деталей, комплектация.</p>
-      <div class="meta">Перейти →</div>
-    </a>
-  </div>
 </main>
 
 <footer class="footer" id="contacts">
-  <p>Конструкторские услуги — проектирование в БАЗИС и технологическая подготовка.</p>
-  <p style="margin-top:8px; opacity:.7">Написать: info@example.ru | Телефон: +7 (XXX) XXX-XX-XX</p>
-  <p style="margin-top:12px"><a href="index.html">← Вернуться на портал</a></p>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Проектирование и деталировка</h4>
+        <p>Собственное конструкторское бюро. Проектирование в БАЗИСе и технологическая подготовка.</p>
+        <p>Новосибирск, работаем удалённо и на выезд.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Связаться</h4>
+        <a href="tel:+7XXXXXXXXXX" class="phone-link">+7 (XXX) XXX-XX-XX</a>
+        <a href="mailto:proj@example.ru">proj@example.ru</a>
+        <a href="https://t.me/xxxx" target="_blank">Telegram</a>
+      </div>
+      <div class="footer-col">
+        <h4>Навигация</h4>
+        <a href="index.html">IT-разработка</a>
+        <a href="konstruktor.html">Проектирование</a>
+        <a href="mebel.html">Мебель</a>
+        <a href="fanera.html">Домокомплекты</a>
+        <a href="stroitelstvo.html">Строительство</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Проектирование и деталировка. Независимый лендинг со своими контактами.
+    </div>
+  </div>
 </footer>
 
 </body>

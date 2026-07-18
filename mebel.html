@@ -1,108 +1,238 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="mebel">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мебель на заказ — салон и онлайн-конфигуратор</title>
+  <title>Мебельный салон «Командор» — Новосибирск</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .configurator { margin-top: 24px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
-    .configurator iframe { width: 100%; height: 520px; border: 0; display: block; background: #0f0f11; }
-    .fallback { padding: 40px; text-align: center; background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); }
-    .fallback a { color: var(--accent); text-decoration: underline; }
+    .hero-accent {
+      background: linear-gradient(135deg, #f4a261, #e76f51);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+    .phone-link { font-size: 1.3rem; font-weight: 700; color: #fff; }
+    .phone-link:hover { color: var(--accent); }
+
+    .feature-icon-terracotta { background: linear-gradient(135deg, #fff0e8, #ffddd0); color: #c05621; }
+    .feature-icon-blue { background: linear-gradient(135deg, #e8f0fe, #d4e2fc); color: var(--accent); }
+    .feature-icon-green { background: linear-gradient(135deg, #dcfce7, #bbf7d0); color: #16a34a; }
+    .feature-icon-purple { background: linear-gradient(135deg, #f3e8ff, #e9d5ff); color: #7c3aed; }
+
+    .card-accent-terracotta::before { background: linear-gradient(90deg, #d97757, #e76f51); }
+    .card-accent-blue::before { background: linear-gradient(90deg, #2f6fed, #7c3aed); }
+    .card-accent-green::before { background: linear-gradient(90deg, #16a34a, #22c55e); }
+
+    .btn-terracotta { background: linear-gradient(135deg, #d97757, #c05621); box-shadow: 0 4px 16px rgba(192,86,33,0.35); }
+    .btn-terracotta:hover { box-shadow: 0 8px 24px rgba(192,86,33,0.45); }
+
+    .social-links { display: flex; gap: 12px; margin-top: 12px; }
+    .social-links a { display: inline-block; padding: 8px 16px; border-radius: var(--radius); background: rgba(255,255,255,0.1); color: #b0b8c8; font-weight: 600; font-size: 0.88rem; transition: all .2s; }
+    .social-links a:hover { background: var(--accent); color: #fff; }
+
+    .teaser-terracotta::before { background: radial-gradient(circle, rgba(217,119,87,0.15) 0%, transparent 70%); }
   </style>
 </head>
 <body>
 
 <header class="header">
   <div class="header-inner">
-    <div class="logo"><a href="index.html">← Портфолио</a> / Мебель на заказ</div>
+    <div class="logo">Мебельный салон «Командор» НСК</div>
     <nav class="nav">
-      <a href="index.html">Главная</a>
-      <a href="it.html">IT</a>
-      <a href="konstruktor.html">Конструкторы</a>
-      <a href="fanera.html">Домокомплекты</a>
-      <a href="stroitelstvo.html">Строительство</a>
+      <a href="#services">Услуги</a>
+      <a href="#works">Работы</a>
+      <a href="#configurator">Конфигуратор</a>
+      <a href="#contacts">Контакты</a>
     </nav>
   </div>
 </header>
 
+<!-- Hero -->
 <section class="hero">
-  <h1>Мебель на заказ</h1>
-  <p>Корпусная, встроенная, кухонная и детская мебель по индивидуальным размерам. Франшиза «Командор», онлайн-конфигуратор и замер под ключ.</p>
-  <a class="btn" href="https://komandor-nsk.ru/" target="_blank">Сайт салона</a>
-  <a class="btn btn-outline" href="https://www.instagram.com/vsepopolkam.nsk/" target="_blank">Витрина «Всё по полкам»</a>
+  <div class="hero-split">
+    <div class="hero-text">
+      <h1 class="animate">Мебель <span class="hero-accent">по индивидуальным размерам</span></h1>
+      <p class="animate delay-1">Корпусная, встроенная, кухонная и детская мебель во франшизе «Командор». Замер, 3D-проект, производство, доставка и сборка — под ключ в Новосибирске.</p>
+      <div class="hero-btns animate delay-2">
+        <a class="btn btn-terracotta" href="#form">Вызвать замерщика</a>
+        <a class="btn btn-outline" href="#works">Наши работы</a>
+      </div>
+    </div>
+    <div class="hero-media animate delay-2">
+      <img src="img/mebel/g2.jpg" alt="Кухня по индивидуальному проекту: графитовые фасады, белая столешница, чёрная мойка">
+    </div>
+  </div>
 </section>
 
 <main class="container">
-  <h2 class="section-title">3D-конфигуратор</h2>
-  <p>Выберите конфигурацию, материалы, фурнитуру и получите визуализацию и расчёт стоимости онлайн. Если конфигуратор не загружается ниже, откройте его по прямой ссылке.</p>
-  <a class="btn" href="https://site.outline3d.ru/" target="_blank" style="margin-top:12px">Открыть конфигуратор в новой вкладке</a>
 
-  <div class="configurator">
-    <iframe src="https://site.outline3d.ru/" title="Outline3D конфигуратор" loading="lazy"></iframe>
+  <!-- Services -->
+  <section id="services">
+    <h2 class="section-title animate">Услуги</h2>
+    <p class="section-subtitle animate delay-1">От замера до готовой мебели</p>
+    <div class="features">
+      <div class="feature animate delay-1">
+        <div class="feature-icon feature-icon-terracotta">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        </div>
+        <h4>Замер и дизайн</h4>
+        <p>Выезд на объект, точные замеры, подготовка эскиза и 3D-визуализации. Учитываем инженерные коммуникации и особенности помещения.</p>
+      </div>
+      <div class="feature animate delay-2">
+        <div class="feature-icon feature-icon-blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        </div>
+        <h4>Производство</h4>
+        <p>Собственное производство по франшизе «Командор». ЛДСП, МДФ, шпон, массив, кварцевые столешницы. Реальные производители: ЭГГЕР, ТОМСК.</p>
+      </div>
+      <div class="feature animate delay-3">
+        <div class="feature-icon feature-icon-green">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+        </div>
+        <h4>Доставка и сборка</h4>
+        <p>Доставка по Новосибирску и области. Сборка и установка опытными бригадами с гарантией.</p>
+      </div>
+      <div class="feature animate delay-4">
+        <div class="feature-icon feature-icon-purple">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <h4>Гарантия и сервис</h4>
+        <p>Гарантия на мебель и фурнитуру. Постгарантийное обслуживание, замена комплектующих.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Why -->
+  <section id="why">
+    <h2 class="section-title animate">Почему заказывают здесь</h2>
+    <p class="section-subtitle animate delay-1">Витрина «Всё По Полкам» — зарегистрированный бренд</p>
+    <div class="grid">
+      <div class="card card-accent-terracotta animate delay-1">
+        <span class="tag">Скоро</span>
+        <h3>Свой онлайн-конфигуратор</h3>
+        <p>Скоро вы сможете собрать шкаф или кухню прямо на сайте, увидеть цену и отправить заявку. Экономит время и снимает неопределённость.</p>
+        <div class="meta">В разработке →</div>
+      </div>
+      <div class="card card-accent-blue animate delay-2">
+        <h3>Связь с конструкторами</h3>
+        <p>Если проект сложный, конструкторы детализируют модель в БАЗИСе, подготовят производственные документы и сопроводят сборку.</p>
+      </div>
+      <div class="card card-accent-green animate delay-3">
+        <h3>Прозрачность процесса</h3>
+        <p>IT-направление обеспечивает цифровой контроль заказа: статус, сроки, комплектация — всё под контролем.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Works gallery -->
+  <section id="works">
+    <h2 class="section-title animate">Наши работы</h2>
+    <p class="section-subtitle animate delay-1">Реальные проекты салона «Командор» Новосибирск. Нажмите на фото, чтобы открыть в полном размере.</p>
+    <div class="gallery animate delay-2">
+      <a href="img/mebel/g15.jpg" target="_blank"><img src="img/mebel/g15.jpg" alt="Белая классическая кухня с подсветкой" loading="lazy"></a>
+      <a href="img/mebel/g5.jpg" target="_blank"><img src="img/mebel/g5.jpg" alt="Современная белая кухня с деревянной столешницей" loading="lazy"></a>
+      <a href="img/mebel/g2.jpg" target="_blank"><img src="img/mebel/g2.jpg" alt="Кухня с графитовыми фасадами и чёрной мойкой" loading="lazy"></a>
+      <a href="img/mebel/g1.jpg" target="_blank"><img src="img/mebel/g1.jpg" alt="Встроенный шкаф с открытыми полками в спальню" loading="lazy"></a>
+      <a href="img/mebel/g6.jpg" target="_blank"><img src="img/mebel/g6.jpg" alt="Прихожая с антресолями и банкеткой" loading="lazy"></a>
+      <a href="img/mebel/g3.jpg" target="_blank"><img src="img/mebel/g3.jpg" alt="Туалетный столик с зеркалом в пудровом цвете" loading="lazy"></a>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Configurator teaser -->
+  <section id="configurator">
+    <h2 class="section-title animate">3D-конфигуратор</h2>
+    <div class="teaser teaser-terracotta animate delay-1">
+      <div class="teaser-icon">📐</div>
+      <h3>Скоро онлайн-конфигуратор</h3>
+      <p>Мы разрабатываем собственный 3D-конструктор мебели. Параметрическая геометрия, реальные материалы, расчёт цены в реальном времени. Пока — звоните или пишите, проконсультируем и рассчитаем вручную.</p>
+      <div class="hero-btns" style="margin-top:20px">
+        <a class="btn btn-terracotta" href="#form">Рассчитать мебель</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Form -->
+  <section id="form" class="form-section animate">
+    <h2>Заказать мебель</h2>
+    <p>Оставьте заявку — перезвоним, согласуем удобное время замера.</p>
+    <form action="https://docs.google.com/forms/d/e/ВАШ_ID_ФОРМЫ/viewform" method="GET" target="_blank">
+      <div class="form-grid">
+        <input type="text" name="entry.ВАШ_ПОЛЕ_ИМЯ" class="form-field" placeholder="Ваше имя" required>
+        <input type="tel" name="entry.ВАШ_ПОЛЕ_ТЕЛЕФОН" class="form-field" placeholder="Телефон" required>
+        <input type="email" name="entry.ВАШ_ПОЛЕ_EMAIL" class="form-field" placeholder="Email (необязательно)">
+        <textarea name="entry.ВАШ_ПОЛЕ_СООБЩЕНИЕ" class="form-field textarea" placeholder="Что нужно: шкаф, кухня, гардеробная? Примерные размеры, пожелания"></textarea>
+      </div>
+      <button type="submit" class="btn btn-terracotta">Отправить заявку</button>
+      <p style="margin-top:12px; font-size:0.85rem; opacity:0.6;">Форма подключена к Google Forms. После отправки откроется подтверждение.</p>
+    </form>
+  </section>
+
+  <!-- Also -->
+  <div class="also-section animate">
+    <h2>Другие направления</h2>
+    <p>Отдельные лендинги со своими контактами.</p>
+    <div class="also-grid">
+      <a href="index.html" class="also-card">
+        <h4>IT-разработка</h4>
+        <p>Архитектура Проекта — конфигураторы, автоматизация</p>
+      </a>
+      <a href="konstruktor.html" class="also-card">
+        <h4>Проектирование и деталировка</h4>
+        <p>Проектирование в БАЗИСе, деталировка</p>
+      </a>
+      <a href="fanera.html" class="also-card">
+        <h4>Домокомплекты</h4>
+        <p>Модульные дома из фанеры</p>
+      </a>
+      <a href="stroitelstvo.html" class="also-card">
+        <h4>Строительство</h4>
+        <p>Отделка, инженерия, под ключ</p>
+      </a>
+    </div>
   </div>
 
-  <h2 class="section-title" style="margin-top:40px">Услуги</h2>
-  <div class="features">
-    <div class="feature">
-      <h4>Замер и дизайн</h4>
-      <p>Выезд на объект, точные замеры, подготовка эскиза и 3D-визуализации. Учитываем инженерные коммуникации и особенности помещения.</p>
-    </div>
-    <div class="feature">
-      <h4>Производство</h4>
-      <p>Собственное производство по франшизе «Командор». ЛДСП, МДФ, шпон, массив, кварцевые столешницы.</p>
-    </div>
-    <div class="feature">
-      <h4>Доставка и сборка</h4>
-      <p>Доставка по Новосибирску и области. Сборка и установка опытными бригадами с гарантией.</p>
-    </div>
-    <div class="feature">
-      <h4>Гарантия и сервис</h4>
-      <p>Гарантия на мебель и фурнитуру. Постгарантийное обслуживание, замена комплектующих.</p>
-    </div>
-  </div>
-
-  <h2 class="section-title" style="margin-top:40px">Почему заказывают здесь</h2>
-  <div class="features">
-    <div class="feature">
-      <h4>Онлайн-конфигуратор</h4>
-      <p>Можно собрать шкаф или кухню прямо на сайте, увидеть цену и сразу отправить заявку. Экономит время и снимает неопределённость.</p>
-    </div>
-    <div class="feature">
-      <h4>Связь с конструкторами</h4>
-      <p>Если проект сложный, конструкторы в штате детализируют модель, подготовят производственные документы и сопроводят сборку.</p>
-    </div>
-    <div class="feature">
-      <h4>Цифровой контроль заказа</h4>
-      <p>IT-направление обеспечивает прозрачность: статус заказа, сроки, комплектация — всё под контролем.</p>
-    </div>
-  </div>
-
-  <h2 class="section-title" style="margin-top:40px">Связанные направления</h2>
-  <div class="grid">
-    <a class="card" href="it.html">
-      <h3>IT-разработка</h3>
-      <p>Технологии, которые стоят за конфигуратором и автоматизацией заказов. Разработка под ключ.</p>
-      <div class="meta">Перейти →</div>
-    </a>
-    <a class="card" href="konstruktor.html">
-      <h3>Конструкторы</h3>
-      <p>Проектирование мебели в БАЗИСе, деталировка, раскрой и управляющие программы для ЧПУ.</p>
-      <div class="meta">Перейти →</div>
-    </a>
-    <a class="card" href="fanera.html">
-      <h3>Домокомплекты</h3>
-      <p>Для нестандартных решений: мебель из фанеры, малые архитектурные формы, детские домики.</p>
-      <div class="meta">Перейти →</div>
-    </a>
-  </div>
 </main>
 
+<!-- Contacts -->
 <footer class="footer" id="contacts">
-  <p>Мебель на заказ — салон «Командор» и онлайн-конфигуратор.</p>
-  <p style="margin-top:8px; opacity:.7">komandor-nsk.ru | Instagram: @vsepopolkam.nsk</p>
-  <p style="margin-top:12px"><a href="index.html">← Вернуться на портал</a></p>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Мебельный салон «Командор» НСК</h4>
+        <p>Корпусная мебель на заказ во франшизе Командор. Витрина «Всё По Полкам» — зарегистрированный бренд.</p>
+        <p>Новосибирск, замер по городу и области.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Связаться</h4>
+        <a href="tel:+7XXXXXXXXXX" class="phone-link">+7 (XXX) XXX-XX-XX</a>
+        <a href="mailto:komandor.nsk@example.ru">komandor.nsk@example.ru</a>
+        <div class="social-links">
+          <a href="https://www.instagram.com/vsepopolkam.nsk/" target="_blank">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Навигация</h4>
+        <a href="index.html">IT-разработка</a>
+        <a href="konstruktor.html">Проектирование</a>
+        <a href="mebel.html">Мебель</a>
+        <a href="fanera.html">Домокомплекты</a>
+        <a href="stroitelstvo.html">Строительство</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Мебельный салон «Командор» НСК. Независимый лендинг со своими контактами.
+    </div>
+  </div>
 </footer>
 
 </body>
