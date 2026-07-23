@@ -1,0 +1,42 @@
+{
+  "task": "Download Unsplash images to site directories",
+  "timestamp": "2026-07-19T20:09:00+03:00",
+  "success": true,
+  "method": "curl via Kimi web-image proxy URLs (direct Unsplash blocked)",
+  "target_base_dir": "C:\\Users\\user\\YandexDisk\\САЙТ\\site\\img",
+  "images": [
+    {
+      "source_url": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
+      "proxy_url": "https://kimi-web-img.moonshot.cn/img/images.unsplash.com/5bc125e8a13fb7c33e65f9c669785f76161320a2",
+      "output_path": "C:\\Users\\user\\YandexDisk\\САЙТ\\site\\img\\it_new\\hero1.jpg",
+      "size_bytes": 63215,
+      "dimensions": "800x534",
+      "format": "JPEG",
+      "status": "downloaded_ok"
+    },
+    {
+      "source_url": "https://images.unsplash.com/photo-1602664876866-d3b33b77756b?q=85&w=800",
+      "proxy_url": "https://kimi-web-img.moonshot.cn/img/images.unsplash.com/03eb1fc85b6ae9fc654ae2adf522852c06065c4c",
+      "output_path": "C:\\Users\\user\\YandexDisk\\САЙТ\\site\\img\\konstr_new\\hero1.jpg",
+      "size_bytes": 63025,
+      "dimensions": "800x533",
+      "format": "JPEG",
+      "status": "downloaded_ok"
+    },
+    {
+      "source_url": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",
+      "proxy_url": "https://kimi-web-img.moonshot.cn/img/images.unsplash.com/9936964f87e8bc31696f163038d85bd7a8d4849b",
+      "output_path": "C:\\Users\\user\\YandexDisk\\САЙТ\\site\\img\\konstr_new\\hero2.jpg",
+      "size_bytes": 52293,
+      "dimensions": "800x450",
+      "format": "JPEG",
+      "status": "downloaded_ok"
+    }
+  ],
+  "technical_notes": {
+    "direct_unsplash_access": "BLOCKED — connection reset/timed out from this environment to images.unsplash.com",
+    "workaround": "Used Kimi built-in fetch (kimi_fetch_v2 / FetchURL) to resolve Unsplash URLs to Kimi proxy URLs, then downloaded via curl",
+    "python_script_prepared": "C:\\Users\\user\\YandexDisk\\САЙТ\\site\\img\\download_images.py — contains proxy URLs; can be rerun if images need refreshing",
+    "verification": "All files exist, have non-zero size, and are valid JPEG images per `file` command"
+  }
+}

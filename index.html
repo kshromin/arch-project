@@ -16,13 +16,11 @@
     .phone-link { font-size: 1.3rem; font-weight: 700; color: #fff; }
     .phone-link:hover { color: var(--accent); }
 
-    /* SVG-иконки для фич */
     .feature-icon-blue { background: linear-gradient(135deg, #e8f0fe, #d4e2fc); color: var(--accent); }
     .feature-icon-purple { background: linear-gradient(135deg, #f3e8ff, #e9d5ff); color: #7c3aed; }
     .feature-icon-green { background: linear-gradient(135deg, #dcfce7, #bbf7d0); color: #16a34a; }
     .feature-icon-orange { background: linear-gradient(135deg, #ffedd5, #fed7aa); color: #ea580c; }
 
-    /* Карточки с цветными бордерами */
     .card-accent-blue::before { background: linear-gradient(90deg, #2f6fed, #7c3aed); }
     .card-accent-purple::before { background: linear-gradient(90deg, #7c3aed, #ec4899); }
     .card-accent-green::before { background: linear-gradient(90deg, #16a34a, #22c55e); }
@@ -44,11 +42,18 @@
 
 <!-- Hero -->
 <section class="hero">
-  <h1 class="animate">IT-разработка <span class="hero-accent">с пониманием производства</span></h1>
-  <p class="animate delay-1">Разрабатываем 3D-конфигураторы, веб-приложения и системы автоматизации для фабрик, дилеров и производителей. Знаем, как устроен цикл от заявки до отгрузки — потому что сами проходим его каждый день.</p>
-  <div class="hero-btns animate delay-2">
-    <a class="btn" href="#form">Обсудить проект</a>
-    <a class="btn btn-outline" href="#cases">Посмотреть кейсы</a>
+  <div class="hero-split">
+    <div class="hero-text">
+      <h1 class="animate">IT-разработка <span class="hero-accent">с пониманием производства</span></h1>
+      <p class="animate delay-1">Разрабатываем 3D-конфигураторы, веб-приложения и системы автоматизации для фабрик, дилеров и производителей. Знаем, как устроен цикл от заявки до отгрузки — потому что сами проходим его каждый день.</p>
+      <div class="hero-btns animate delay-2">
+        <a class="btn" href="#form">Обсудить проект</a>
+        <a class="btn btn-outline" href="#cases">Посмотреть кейсы</a>
+      </div>
+    </div>
+    <div class="hero-media animate delay-2">
+      <img src="img/it/hero1.jpg" alt="Интерфейс 3D-конфигуратора на экране ноутбука">
+    </div>
   </div>
 </section>
 
