@@ -5,6 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Архитектура Проекта — IT-разработка</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .vpn-section {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #fff;
+      border-radius: 24px;
+      padding: 48px;
+      margin: 48px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .vpn-section::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(47,111,237,0.25) 0%, transparent 70%);
+    }
+    .vpn-section h2 { font-size: 1.8rem; margin-bottom: 8px; position: relative; z-index: 1; }
+    .vpn-section > p.desc { opacity: 0.75; margin-bottom: 28px; position: relative; z-index: 1; }
+    .vpn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      position: relative; z-index: 1;
+    }
+    .vpn-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+      transition: all .3s ease;
+    }
+    .vpn-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); }
+    .vpn-card .os-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px; font-size: 1.6rem;
+      background: rgba(255,255,255,0.08);
+    }
+    .vpn-card h4 { font-size: 1.1rem; margin-bottom: 6px; }
+    .vpn-card p { font-size: 0.9rem; opacity: 0.7; margin-bottom: 16px; }
+    .btn-download {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 50px;
+      font-weight: 600; font-size: 0.9rem;
+      background: linear-gradient(135deg, #2f6fed 0%, #1a5ad1 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(47,111,237,0.35);
+      transition: all .3s ease;
+    }
+    .btn-download:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(47,111,237,0.5); color: #fff; }
+    .vpn-order {
+      margin-top: 32px; padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      position: relative; z-index: 1;
+    }
+    .vpn-order h3 { font-size: 1.3rem; margin-bottom: 8px; }
+    .vpn-order p { opacity: 0.75; margin-bottom: 20px; }
+    .vpn-contacts { display: flex; gap: 12px; flex-wrap: wrap; }
+    .vpn-contacts a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; border-radius: 50px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff; font-weight: 500; font-size: 0.9rem;
+      transition: all .3s ease;
+    }
+    .vpn-contacts a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+  </style>
 </head>
 <body>
 
@@ -57,6 +127,34 @@
       <p>Цифровизация процессов: от онлайн-заявки до задания на производство. Убираем ручной труд и ошибки.</p>
     </div>
   </div>
+
+  <!-- VPN Section -->
+  <section class="vpn-section" id="vpn">
+    <h2>KHROM VPN</h2>
+    <p class="desc">Приватный VPN-туннель для работы и личного использования. Собственные приложения для Android и Windows.</p>
+    <div class="vpn-grid">
+      <div class="vpn-card">
+        <div class="os-icon">🤖</div>
+        <h4>Android</h4>
+        <p>Скачайте .apk и установите вручную. Работает на Android 8+.</p>
+        <a class="btn-download" href="downloads/KHROM-VPN-Android-0.4.0.apk" download>Скачать .apk</a>
+      </div>
+      <div class="vpn-card">
+        <div class="os-icon">🪟</div>
+        <h4>Windows</h4>
+        <p>Установщик для Windows 10/11. Скачайте и запустите exe.</p>
+        <a class="btn-download" href="downloads/KHROM%20VPN.exe" download>Скачать .exe</a>
+      </div>
+    </div>
+    <div class="vpn-order">
+      <h3>Заказать туннель</h3>
+      <p>Напишите нам — подготовим конфигурацию под ваши устройства и задачи.</p>
+      <div class="vpn-contacts">
+        <a href="mailto:it@khrom-in.ru?subject=Заказ VPN-туннеля&body=Здравствуйте,%0A%0AХочу заказать VPN-туннель.%0A%0AУстройства:%0AСрок:%0AТелефон / Telegram:%0A%0A">📧 Заявка: it@khrom-in.ru</a>
+        <a href="mailto:support@khrom-in.ru">🛟 Поддержка: support@khrom-in.ru</a>
+      </div>
+    </div>
+  </section>
 
   <h2 class="section-title" style="margin-top:40px">Почему обращаются к нам</h2>
   <div class="features">
@@ -116,7 +214,7 @@
 
 <footer class="footer" id="contacts">
   <p>Архитектура Проекта — IT-разработка и цифровизация производства.</p>
-  <p style="margin-top:8px; opacity:.7">Написать: info@example.ru | Телефон: +7 (XXX) XXX-XX-XX</p>
+  <p style="margin-top:8px; opacity:.7">Заявки: <a href="mailto:it@khrom-in.ru">it@khrom-in.ru</a> | Поддержка: <a href="mailto:support@khrom-in.ru">support@khrom-in.ru</a></p>
   <p style="margin-top:12px"><a href="index.html">← Вернуться на портал</a></p>
 </footer>
 
