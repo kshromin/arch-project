@@ -3,92 +3,356 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Архитектура Проекта — IT-разработка и цифровизация производства</title>
+  <title>KHROM — IT-разработка и цифровизация производства</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .hero-accent {
-      background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    :root {
+      --khrom-bg: #0a0a0f;
+      --khrom-surface: #12121a;
+      --khrom-surface-hover: #1a1a25;
+      --khrom-border: #2a2a3a;
+      --khrom-text: #e8e8ec;
+      --khrom-text-dim: #8a8a9a;
+      --khrom-chrome: linear-gradient(135deg, #c0c0c0 0%, #ffffff 50%, #a0a0a0 100%);
+      --khrom-chrome-text: linear-gradient(135deg, #d0d0d0 0%, #ffffff 50%, #b0b0b0 100%);
+      --khrom-accent: #3b82f6;
     }
-    .section-divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
-    .phone-link { font-size: 1.3rem; font-weight: 700; color: #fff; }
-    .phone-link:hover { color: var(--accent); }
+    body { background: var(--khrom-bg); color: var(--khrom-text); }
 
-    .feature-icon-blue { background: linear-gradient(135deg, #e8f0fe, #d4e2fc); color: var(--accent); }
-    .feature-icon-purple { background: linear-gradient(135deg, #f3e8ff, #e9d5ff); color: #7c3aed; }
-    .feature-icon-green { background: linear-gradient(135deg, #dcfce7, #bbf7d0); color: #16a34a; }
-    .feature-icon-orange { background: linear-gradient(135deg, #ffedd5, #fed7aa); color: #ea580c; }
+    /* Header */
+    .khrom-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--khrom-border);
+    }
+    .khrom-header-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 14px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .khrom-logo { display: flex; align-items: center; gap: 12px; }
+    .khrom-logo img { height: 32px; width: auto; }
+    .khrom-logo span {
+      font-size: 1rem; font-weight: 700; letter-spacing: 0.15em;
+      background: var(--khrom-chrome-text);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .khrom-nav { display: flex; gap: 24px; }
+    .khrom-nav a {
+      font-size: 0.88rem; font-weight: 500;
+      color: var(--khrom-text-dim); transition: all 0.3s;
+    }
+    .khrom-nav a:hover { color: #fff; }
 
-    .card-accent-blue::before { background: linear-gradient(90deg, #2f6fed, #7c3aed); }
-    .card-accent-purple::before { background: linear-gradient(90deg, #7c3aed, #ec4899); }
-    .card-accent-green::before { background: linear-gradient(90deg, #16a34a, #22c55e); }
+    /* Hero */
+    .khrom-hero {
+      position: relative;
+      background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0f 70%);
+      padding: 80px 24px 60px;
+      overflow: hidden;
+    }
+    .khrom-hero-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center;
+    }
+    .khrom-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+      letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 18px;
+    }
+    .khrom-hero h1 span {
+      background: var(--khrom-chrome-text);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .khrom-hero p {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--khrom-text-dim); line-height: 1.7; margin-bottom: 28px;
+    }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-chrome {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 28px; border-radius: 50px;
+      font-weight: 600; font-size: 0.92rem;
+      background: var(--khrom-chrome); color: #0a0a0f;
+      transition: all 0.3s; border: none; cursor: pointer;
+    }
+    .btn-chrome:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(255,255,255,0.2); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 28px; border-radius: 50px;
+      font-weight: 600; font-size: 0.92rem;
+      background: transparent; color: var(--khrom-text);
+      border: 1px solid var(--khrom-border);
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { border-color: rgba(192,192,192,0.3); background: rgba(255,255,255,0.04); }
+    .hero-media img {
+      width: 100%; height: auto; display: block;
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+
+    /* Container */
+    .khrom-container { max-width: 1200px; margin: 0 auto; padding: 64px 24px; }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .section-title span {
+      background: var(--khrom-chrome-text);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .section-subtitle { color: var(--khrom-text-dim); font-size: 1rem; margin-bottom: 36px; }
+    .section-divider {
+      border: none; border-top: 1px solid var(--khrom-border); margin: 0;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .feature {
+      background: var(--khrom-surface);
+      border: 1px solid var(--khrom-border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: all 0.3s;
+    }
+    .feature:hover { background: var(--khrom-surface-hover); transform: translateY(-3px); }
+    .feature-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; font-size: 1.4rem;
+    }
+    .feature-icon-blue { background: rgba(59,130,246,0.1); color: #3b82f6; }
+    .feature-icon-purple { background: rgba(124,58,237,0.1); color: #a78bfa; }
+    .feature-icon-green { background: rgba(34,197,94,0.1); color: #4ade80; }
+    .feature-icon-orange { background: rgba(249,115,22,0.1); color: #fb923c; }
+    .feature h4 { font-size: 1.08rem; font-weight: 700; margin-bottom: 8px; }
+    .feature p { color: var(--khrom-text-dim); font-size: 0.94rem; line-height: 1.6; }
+
+    /* Cards */
+    .grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
+    }
+    .card {
+      background: var(--khrom-surface);
+      border: 1px solid var(--khrom-border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--khrom-chrome); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .card:hover { transform: translateY(-4px); border-color: rgba(192,192,192,0.15); }
+    .card:hover::before { transform: scaleX(1); }
+    .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+    .card p { color: var(--khrom-text-dim); font-size: 0.94rem; }
+    .tag {
+      display: inline-block; padding: 4px 12px; border-radius: 50px;
+      font-size: 0.78rem; font-weight: 600; margin-bottom: 12px;
+    }
+    .tag-blue { background: rgba(59,130,246,0.12); color: #60a5fa; }
+    .tag-purple { background: rgba(124,58,237,0.12); color: #c4b5fd; }
+    .tag-green { background: rgba(34,197,94,0.12); color: #86efac; }
+    .meta { font-size: 0.85rem; color: var(--khrom-text-dim); margin-top: 12px; }
+    .meta a { color: #93c5fd; transition: color 0.3s; }
+    .meta a:hover { color: #fff; }
+
+    /* Steps */
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;
+      counter-reset: step;
+    }
+    .step {
+      position: relative; padding-left: 56px;
+    }
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute; left: 0; top: 0;
+      width: 40px; height: 40px;
+      background: var(--khrom-chrome); color: #0a0a0f;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem;
+    }
+    .step h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+    .step p { color: var(--khrom-text-dim); font-size: 0.92rem; }
+
+    /* Video section */
+    .video-section { text-align: center; padding: 48px 0; }
+    .video-wrapper {
+      max-width: 720px; margin: 0 auto;
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--khrom-border);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .video-wrapper video { width: 100%; display: block; }
+
+    /* Form */
+    .form-section {
+      background: var(--khrom-surface);
+      border: 1px solid var(--khrom-border);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 48px 0;
+    }
+    .form-section h2 { font-size: 1.6rem; margin-bottom: 8px; }
+    .form-section h2 span {
+      background: var(--khrom-chrome-text);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .form-section > p { color: var(--khrom-text-dim); margin-bottom: 24px; }
+    .form-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;
+      margin-bottom: 16px;
+    }
+    .form-field {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--khrom-border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: var(--khrom-text); font-size: 0.95rem;
+      transition: all 0.3s; width: 100%;
+    }
+    .form-field::placeholder { color: rgba(138,138,154,0.6); }
+    .form-field:focus { outline: none; border-color: rgba(192,192,192,0.3); background: rgba(255,255,255,0.07); }
+    .form-field.textarea { grid-column: 1 / -1; min-height: 100px; resize: vertical; }
+
+    /* Also section */
+    .also-section {
+      background: var(--khrom-surface);
+      border: 1px solid var(--khrom-border);
+      border-radius: 20px;
+      padding: 36px;
+      margin-top: 48px;
+    }
+    .also-section h2 { font-size: 1.4rem; margin-bottom: 6px; }
+    .also-section h2 span {
+      background: var(--khrom-chrome-text);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .also-section > p { color: var(--khrom-text-dim); margin-bottom: 20px; }
+    .also-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;
+    }
+    .also-card {
+      display: block; background: rgba(255,255,255,0.03);
+      border: 1px solid var(--khrom-border); border-radius: 12px;
+      padding: 18px; transition: all 0.3s;
+    }
+    .also-card:hover { transform: translateY(-3px); border-color: rgba(192,192,192,0.2); background: rgba(255,255,255,0.05); }
+    .also-card h4 { font-size: 0.98rem; font-weight: 700; color: var(--khrom-text); margin-bottom: 4px; }
+    .also-card p { font-size: 0.86rem; color: var(--khrom-text-dim); }
+
+    /* Footer */
+    .khrom-footer {
+      background: var(--khrom-surface);
+      border-top: 1px solid var(--khrom-border);
+      padding: 48px 24px 24px;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px;
+      margin-bottom: 36px;
+    }
+    .footer-col h4 {
+      color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 14px;
+    }
+    .footer-col p { font-size: 0.9rem; color: var(--khrom-text-dim); line-height: 1.7; }
+    .footer-col a {
+      display: block; color: var(--khrom-text-dim); font-size: 0.9rem;
+      margin-bottom: 8px; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: #fff; }
+    .phone-link { font-size: 1.2rem; font-weight: 700; color: #fff; }
+    .phone-link:hover { color: #93c5fd; }
+    .footer-bottom {
+      border-top: 1px solid var(--khrom-border);
+      padding-top: 20px; font-size: 0.82rem; color: var(--khrom-text-dim);
+    }
+
+    @media (max-width: 900px) {
+      .khrom-hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-btns { justify-content: center; }
+      .khrom-header-inner { flex-direction: column; gap: 10px; }
+    }
   </style>
 </head>
 <body>
 
-<header class="header">
-  <div class="header-inner">
-    <div class="logo">Архитектура Проекта</div>
-    <nav class="nav">
+<!-- Header -->
+<header class="khrom-header">
+  <div class="khrom-header-inner">
+    <div class="khrom-logo">
+      <img src="img/khrom-logo.png" alt="KHROM">
+      <span>KHROM</span>
+    </div>
+    <nav class="khrom-nav">
       <a href="#services">Услуги</a>
       <a href="#why">Почему мы</a>
       <a href="#process">Процесс</a>
-      <a href="it.html#vpn">VPN</a>
+      <a href="#cases">Кейсы</a>
       <a href="#contacts">Контакты</a>
     </nav>
   </div>
 </header>
 
 <!-- Hero -->
-<section class="hero">
-  <div class="hero-split">
+<section class="khrom-hero">
+  <div class="khrom-hero-inner">
     <div class="hero-text">
-      <h1 class="animate">IT-разработка <span class="hero-accent">с пониманием производства</span></h1>
-      <p class="animate delay-1">Разрабатываем 3D-конфигураторы, веб-приложения и системы автоматизации для фабрик, дилеров и производителей. Знаем, как устроен цикл от заявки до отгрузки — потому что сами проходим его каждый день.</p>
-      <div class="hero-btns animate delay-2">
-        <a class="btn" href="#form">Обсудить проект</a>
-        <a class="btn btn-outline" href="#cases">Посмотреть кейсы</a>
+      <h1>IT-разработка <span>с пониманием производства</span></h1>
+      <p>Разрабатываем 3D-конфигураторы, веб-приложения и системы автоматизации для фабрик, дилеров и производителей. Знаем, как устроен цикл от заявки до отгрузки — потому что сами проходим его каждый день.</p>
+      <div class="hero-btns">
+        <a class="btn-chrome" href="#form">Обсудить проект</a>
+        <a class="btn-outline" href="#cases">Посмотреть кейсы</a>
       </div>
     </div>
-    <div class="hero-media animate delay-2">
-      <img src="img/it/hero1.jpg" alt="Интерфейс 3D-конфигуратора на экране ноутбука">
+    <div class="hero-media">
+      <img src="img/it/hero1.jpg" alt="Интерфейс 3D-конфигуратора">
     </div>
   </div>
 </section>
 
-<main class="container">
+<!-- Main -->
+<main class="khrom-container">
 
   <!-- Services -->
   <section id="services">
-    <h2 class="section-title animate">Услуги</h2>
-    <p class="section-subtitle animate delay-1">Что мы делаем для бизнеса</p>
+    <h2 class="section-title">Услуги</h2>
+    <p class="section-subtitle">Что мы делаем для бизнеса</p>
     <div class="features">
-      <div class="feature animate delay-1">
+      <div class="feature">
         <div class="feature-icon feature-icon-blue">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
         </div>
         <h4>3D-конфигураторы</h4>
         <p>Интерактивные онлайн-конструкторы для мебели, интерьеров и промышленных изделий. Параметрическая геометрия, реалистичные материалы, расчёт цены в реальном времени.</p>
       </div>
-      <div class="feature animate delay-2">
+      <div class="feature">
         <div class="feature-icon feature-icon-purple">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
         </div>
         <h4>Веб-разработка</h4>
         <p>Лендинги, корпоративные сайты, личные кабинеты, порталы. От прототипа до публикации с учётом SEO, скорости и мобильной адаптивности.</p>
       </div>
-      <div class="feature animate delay-3">
+      <div class="feature">
         <div class="feature-icon feature-icon-green">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
         </div>
         <h4>Интеграция и API</h4>
         <p>Связка сайтов с 1С, CRM, ERP, производственными системами. Автоматизация обмена заказами, складом и документооборотом.</p>
       </div>
-      <div class="feature animate delay-4">
+      <div class="feature">
         <div class="feature-icon feature-icon-orange">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
         </div>
         <h4>Автоматизация бизнеса</h4>
         <p>Цифровизация процессов: от онлайн-заявки до задания на производство. Убираем ручной труд, сокращаем ошибки, ускоряем обработку.</p>
@@ -100,19 +364,19 @@
 
   <!-- Why us -->
   <section id="why">
-    <h2 class="section-title animate">Почему обращаются к нам</h2>
-    <p class="section-subtitle animate delay-1">Не просто кодеры — люди из производства</p>
+    <h2 class="section-title">Почему обращаются к нам</h2>
+    <p class="section-subtitle">Не просто кодеры — люди из производства</p>
     <div class="grid">
-      <div class="card card-accent-blue animate delay-1">
-        <h3>Не просто разработчики</h3>
+      <div class="card">
+        <h3>🏭 Не просто разработчики</h3>
         <p>Мы сами работаем с мебельным производством, конструкторами и строителями. Понимаем, что такое раскрой ЛДСП, деталировка и управляющие программы для ЧПУ.</p>
       </div>
-      <div class="card card-accent-purple animate delay-2">
-        <h3>Готовый продукт как доказательство</h3>
+      <div class="card">
+        <h3>✅ Готовый продукт как доказательство</h3>
         <p>Наш 3D-конфигуратор мебели — не теория, а рабочий инструмент. Мы используем его в соседнем направлении и можем сделать подобный для вас.</p>
       </div>
-      <div class="card card-accent-green animate delay-3">
-        <h3>Масштабируемость</h3>
+      <div class="card">
+        <h3>📈 Масштабируемость</h3>
         <p>Решения растут вместе с бизнесом. От первого лендинга до полноценной фабрики с ERP, CRM и 3D-визуализацией.</p>
       </div>
     </div>
@@ -122,22 +386,22 @@
 
   <!-- Process -->
   <section id="process">
-    <h2 class="section-title animate">Как мы работаем</h2>
-    <p class="section-subtitle animate delay-1">От идеи до запуска — честно и прозрачно</p>
+    <h2 class="section-title">Как мы работаем</h2>
+    <p class="section-subtitle">От идеи до запуска — честно и прозрачно</p>
     <div class="steps">
-      <div class="step animate delay-1">
+      <div class="step">
         <h4>Аудит и архитектура</h4>
         <p>Изучаем бизнес-процессы, проектируем структуру системы и выбираем технологический стек. Фиксируем требования до начала разработки.</p>
       </div>
-      <div class="step animate delay-2">
+      <div class="step">
         <h4>Прототип и дизайн</h4>
         <p>Делаем наброски интерфейсов, схемы данных, пайплайн интеграций. Согласовываем каждое решение до первой строчки кода.</p>
       </div>
-      <div class="step animate delay-3">
+      <div class="step">
         <h4>Разработка</h4>
         <p>Кодим бэкенд, фронтенд, настраиваем интеграции. Показываем промежуточные сборки каждую неделю — вы видите прогресс.</p>
       </div>
-      <div class="step animate delay-4">
+      <div class="step">
         <h4>Запуск и поддержка</h4>
         <p>Разворачиваем, обучаем сотрудников, мониторим стабильность. Дорабатываем по реальному использованию и обратной связи.</p>
       </div>
@@ -148,23 +412,23 @@
 
   <!-- Cases -->
   <section id="cases">
-    <h2 class="section-title animate">Кейсы</h2>
-    <p class="section-subtitle animate delay-1">Проекты, которые мы разработали и используем сами.</p>
+    <h2 class="section-title">Кейсы</h2>
+    <p class="section-subtitle">Проекты, которые мы разработали и используем сами</p>
     <div class="grid">
-      <div class="card card-accent-purple animate delay-1">
-        <span class="tag">В разработке</span>
+      <div class="card">
+        <span class="tag tag-blue">В разработке</span>
         <h3>3D-конфигуратор мебели</h3>
         <p>Параметрический онлайн-конструктор шкафов, кухонь и гардеробных. Three.js, расчёт цены в реальном времени, интеграция с БАЗИС-Мебельщик.</p>
         <div class="meta">Скоро в открытом доступе</div>
       </div>
-      <div class="card card-accent-blue animate delay-2">
-        <span class="tag tag-accent">Автоматизация</span>
+      <div class="card">
+        <span class="tag tag-purple">Автоматизация</span>
         <h3>Мебельный салон «Командор» НСК</h3>
         <p>Лендинг, онлайн-конфигуратор, корзина заказов. Полный цикл от заявки клиента до передачи в производство.</p>
         <div class="meta"><a href="mebel.html">Подробнее →</a></div>
       </div>
-      <div class="card card-accent-green animate delay-3">
-        <span class="tag" style="background:#dcfce7;color:#16a34a">Приложение</span>
+      <div class="card">
+        <span class="tag tag-green">Приложение</span>
         <h3>KHROM VPN</h3>
         <p>Собственные приложения для Android и Windows. Приватный VPN-туннель для работы и личного использования.</p>
         <div class="meta"><a href="it.html#vpn">Скачать и заказать →</a></div>
@@ -172,9 +436,26 @@
     </div>
   </section>
 
+  <!-- Videos -->
+  <section class="video-section">
+    <h2 class="section-title"><span>Видео</span></h2>
+    <p class="section-subtitle">Посмотрите, как работает наш конфигуратор</p>
+    <div class="video-wrapper" style="margin-bottom: 32px;">
+      <video controls poster="img/it/hero.png" preload="metadata">
+        <source src="video/Конфигуратор_мебели_сжатый.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="section-subtitle" style="margin-top: 40px;">Короткий ролик о KHROM</p>
+    <div class="video-wrapper">
+      <video controls preload="metadata">
+        <source src="video/Ролик_KHROM_v1.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
   <!-- Form -->
-  <section id="form" class="form-section animate">
-    <h2>Обсудить проект</h2>
+  <section id="form" class="form-section">
+    <h2><span>Обсудить</span> проект</h2>
     <p>Оставьте заявку — свяжемся в течение дня. Без спама, только по делу.</p>
     <form action="https://docs.google.com/forms/d/e/ВАШ_ID_ФОРМЫ/viewform" method="GET" target="_blank">
       <div class="form-grid">
@@ -183,30 +464,30 @@
         <input type="email" name="entry.ВАШ_ПОЛЕ_EMAIL" class="form-field" placeholder="Email (необязательно)">
         <textarea name="entry.ВАШ_ПОЛЕ_СООБЩЕНИЕ" class="form-field textarea" placeholder="Расскажите о задаче: что нужно, сроки, бюджет"></textarea>
       </div>
-      <button type="submit" class="btn">Отправить заявку</button>
-      <p style="margin-top:12px; font-size:0.85rem; opacity:0.6;">Форма подключена к Google Forms. После отправки откроется подтверждение.</p>
+      <button type="submit" class="btn-chrome">Отправить заявку</button>
+      <p style="margin-top:12px; font-size:0.85rem; color: var(--khrom-text-dim);">Форма подключена к Google Forms. После отправки откроется подтверждение.</p>
     </form>
   </section>
 
   <!-- Also we do -->
-  <div class="also-section animate">
-    <h2>Также мы делаем</h2>
-    <p>Другие направления — со своими контактами и экспертизой.</p>
+  <div class="also-section" id="contacts">
+    <h2>Также мы <span>делаем</span></h2>
+    <p>Другие направления — со своими контактами и экспертизой</p>
     <div class="also-grid">
       <a href="konstruktor.html" class="also-card">
-        <h4>Проектирование и деталировка</h4>
+        <h4>🔧 Проектирование и деталировка</h4>
         <p>Проектирование в БАЗИСе, деталировка, программы ЧПУ</p>
       </a>
       <a href="mebel.html" class="also-card">
-        <h4>Мебель на заказ</h4>
+        <h4>🪑 Мебель на заказ</h4>
         <p>Салон «Командор», Новосибирск. Замер, проект, монтаж.</p>
       </a>
       <a href="fanera.html" class="also-card">
-        <h4>Домокомплекты из фанеры</h4>
+        <h4>🏠 Домокомплекты из фанеры</h4>
         <p>Модульные дома. Экологично, быстро, точно.</p>
       </a>
       <a href="stroitelstvo.html" class="also-card">
-        <h4>Строительство</h4>
+        <h4>🔨 Строительство</h4>
         <p>Отделка, инженерия, проекты «под ключ» с партнёрами.</p>
       </a>
     </div>
@@ -214,20 +495,20 @@
 
 </main>
 
-<!-- Contacts -->
-<footer class="footer" id="contacts">
+<!-- Footer -->
+<footer class="khrom-footer">
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>Архитектура Проекта</h4>
+        <h4>KHROM</h4>
         <p>IT-разработка и цифровизация производства.</p>
         <p>Новосибирск, работаем по всей России.</p>
       </div>
       <div class="footer-col">
         <h4>Связаться</h4>
-        <a href="tel:+7XXXXXXXXXX" class="phone-link">+7 (XXX) XXX-XX-XX</a>
-        <a href="mailto:it@archproject.ru">it@archproject.ru</a>
-        <a href="https://t.me/xxxx" target="_blank">Telegram</a>
+        <a href="tel:+79039310848" class="phone-link">+7 (903) 931-08-48</a>
+        <a href="mailto:it@khrom-in.ru">it@khrom-in.ru</a>
+        <a href="https://t.me/KonstantKH" target="_blank">Telegram: @KonstantKH</a>
       </div>
       <div class="footer-col">
         <h4>Навигация</h4>
@@ -239,7 +520,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      © 2025 Архитектура Проекта. Все направления — независимые лендинги со своими контактами.
+      © 2025 KHROM. Все направления — независимые лендинги со своими контактами.
     </div>
   </div>
 </footer>
