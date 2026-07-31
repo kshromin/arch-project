@@ -7,10 +7,10 @@
   <link rel="stylesheet" href="style.css">
   <style>
     :root {
-      --khrom-bg: #0a0a0f;
-      --khrom-surface: #12121a;
-      --khrom-surface-hover: #1a1a25;
-      --khrom-border: #2a2a3a;
+      --khrom-bg: #0f1117;
+      --khrom-surface: #181a22;
+      --khrom-surface-hover: #202330;
+      --khrom-border: #2a2d3a;
       --khrom-text: #e8e8ec;
       --khrom-text-dim: #8a8a9a;
       --khrom-chrome: linear-gradient(135deg, #c0c0c0 0%, #ffffff 50%, #a0a0a0 100%);
@@ -22,7 +22,7 @@
     /* Header */
     .khrom-header {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(10,10,15,0.92);
+      background: rgba(15,17,23,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--khrom-border);
     }
@@ -48,7 +48,7 @@
     /* Hero */
     .khrom-hero {
       position: relative;
-      background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0f 70%);
+      background: radial-gradient(ellipse at center, #1a1d2e 0%, #0f1117 70%);
       padding: 80px 24px 60px;
       text-align: center;
       overflow: hidden;
@@ -67,7 +67,7 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .khrom-hero p {
-      font-size: 1.05rem; color: var(--khrom-text-dim);
+      font-size: 1.05rem; color: #a0a0b0;
       max-width: 580px; margin: 0 auto 28px; line-height: 1.7;
     }
     .khrom-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
@@ -75,7 +75,7 @@
       display: inline-flex; align-items: center; gap: 8px;
       padding: 13px 28px; border-radius: 50px;
       font-weight: 600; font-size: 0.92rem;
-      background: var(--khrom-chrome); color: #0a0a0f;
+      background: var(--khrom-chrome); color: #0f1117;
       transition: all 0.3s; border: none; cursor: pointer;
     }
     .btn-chrome:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(255,255,255,0.2); }
@@ -171,7 +171,7 @@
       content: counter(step);
       position: absolute; left: 0; top: 0;
       width: 38px; height: 38px;
-      background: var(--khrom-chrome); color: #0a0a0f;
+      background: var(--khrom-chrome); color: #0f1117;
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
       font-weight: 700; font-size: 1rem;
     }
@@ -221,7 +221,7 @@
       transition: all 0.3s;
     }
     .vpn-row .btn-chrome-sm {
-      background: var(--khrom-chrome); color: #0a0a0f;
+      background: var(--khrom-chrome); color: #0f1117;
     }
     .vpn-row .btn-chrome-sm:hover { box-shadow: 0 0 15px rgba(255,255,255,0.15); }
     .vpn-row .btn-outline-sm {
@@ -230,43 +230,42 @@
     }
     .vpn-row .btn-outline-sm:hover { border-color: rgba(192,192,192,0.2); }
 
-    /* Contacts */
-    .contacts-section {
+    /* Form */
+    .form-section-it {
       background: var(--khrom-surface);
       border: 1px solid var(--khrom-border);
       border-radius: 20px;
       padding: 40px;
-      text-align: center;
+      margin: 48px 0;
     }
-    .contacts-section h2 { font-size: 1.6rem; margin-bottom: 8px; }
-    .contacts-section h2 span {
+    .form-section-it h2 { font-size: 1.6rem; margin-bottom: 8px; }
+    .form-section-it h2 span {
       background: var(--khrom-chrome-text);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .contacts-section > p { color: var(--khrom-text-dim); margin-bottom: 24px; }
-    .contacts-grid { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .contact-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 12px 24px; border-radius: 50px;
-      font-weight: 600; font-size: 0.9rem;
-      transition: all 0.3s;
+    .form-section-it > p { color: var(--khrom-text-dim); margin-bottom: 24px; }
+    .form-grid-it {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;
+      margin-bottom: 16px;
     }
-    .contact-btn-chrome { background: var(--khrom-chrome); color: #0a0a0f; }
-    .contact-btn-chrome:hover { box-shadow: 0 0 25px rgba(255,255,255,0.2); transform: translateY(-2px); }
-    .contact-btn-outline { background: rgba(255,255,255,0.05); color: var(--khrom-text); border: 1px solid var(--khrom-border); }
-    .contact-btn-outline:hover { border-color: rgba(192,192,192,0.3); }
-
-    /* Yandex Form placeholder */
-    .form-placeholder {
-      background: rgba(255,255,255,0.03);
-      border: 1px dashed var(--khrom-border);
-      border-radius: 14px;
-      padding: 32px;
-      text-align: center;
-      margin-top: 20px;
+    .form-field-it {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--khrom-border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: var(--khrom-text); font-size: 0.95rem;
+      transition: all 0.3s; width: 100%;
     }
-    .form-placeholder p { color: var(--khrom-text-dim); font-size: 0.9rem; }
-    .form-placeholder a { color: var(--khrom-accent); }
+    .form-field-it::placeholder { color: rgba(138,138,154,0.6); }
+    .form-field-it:focus { outline: none; border-color: rgba(192,192,192,0.3); background: rgba(255,255,255,0.07); }
+    .form-field-it.textarea { grid-column: 1 / -1; min-height: 100px; resize: vertical; }
+    .form-status {
+      margin-top: 14px; padding: 12px 18px; border-radius: 10px;
+      font-size: 0.92rem; text-align: center; display: none;
+    }
+    .form-status.success { background: rgba(34,197,94,0.1); color: #86efac; border: 1px solid rgba(34,197,94,0.2); }
+    .form-status.error { background: rgba(239,68,68,0.1); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+    .form-status.warning { background: rgba(245,158,11,0.1); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
 
     /* Footer */
     .khrom-footer {
@@ -462,21 +461,30 @@
     </div>
   </section>
 
-  <!-- Contacts -->
+  <!-- Contacts & Form -->
   <section class="khrom-container" id="contacts">
-    <div class="contacts-section">
+    <div class="form-section-it">
       <h2><span>Связаться</span> с нами</h2>
       <p>Заявки на конфигуратор, IT-разработку, VPN — отвечаем быстро</p>
-      <div class="contacts-grid">
-        <a class="contact-btn contact-btn-chrome" href="mailto:it@khrom-in.ru?subject=Заявка с сайта KHROM">📧 it@khrom-in.ru</a>
-        <a class="contact-btn contact-btn-outline" href="https://t.me/KonstantKH" target="_blank">💬 Telegram: @KonstantKH</a>
-        <a class="contact-btn contact-btn-outline" href="tel:+79039310848">📞 +7 (903) 931-08-48</a>
-      </div>
-
-      <!-- Yandex Form placeholder -->
-      <div class="form-placeholder">
-        <p>📋 <strong>Яндекс.Форма</strong> — вы можете создать форму в <a href="https://forms.yandex.ru" target="_blank">Яндекс 360</a> и я встрою её сюда.<br>Или пишите напрямую — почта и Telegram работают прямо сейчас.</p>
-      </div>
+      <form data-form="khrom" data-source="it" style="max-width:720px;margin:0 auto;">
+        <div class="form-grid-it">
+          <input type="text" name="name" class="form-field-it" placeholder="Ваше имя" required>
+          <input type="tel" name="phone" class="form-field-it" placeholder="Телефон" required>
+          <input type="email" name="email" class="form-field-it" placeholder="Email">
+          <select name="direction" class="form-field-it" style="background:var(--khrom-surface);color:var(--khrom-text);">
+            <option value="" disabled selected>Направление</option>
+            <option value="IT-разработка">IT-разработка</option>
+            <option value="Конфигуратор">3D-конфигуратор мебели</option>
+            <option value="VPN">KHROM VPN</option>
+            <option value="Другое">Другое</option>
+          </select>
+          <textarea name="message" class="form-field-it textarea" placeholder="Опишите задачу..."></textarea>
+        </div>
+        <div style="text-align:center;margin-top:18px;">
+          <button type="submit" class="btn-chrome" style="border:none;cursor:pointer;">Отправить заявку</button>
+          <p style="color:var(--khrom-text-dim);font-size:0.82rem;margin-top:12px;">Или напишите: <a href="mailto:it@khrom-in.ru" style="color:#93c5fd;">it@khrom-in.ru</a> · <a href="https://t.me/KonstantKH" style="color:#93c5fd;" target="_blank">Telegram</a></p>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -487,5 +495,6 @@
   <p>KHROM — IT-разработка и цифровизация производства · <a href="index.html">← Вернуться на портал</a></p>
 </footer>
 
+<script src="js/form-handler.js"></script>
 </body>
 </html>

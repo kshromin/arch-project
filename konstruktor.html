@@ -27,6 +27,31 @@
 
     .btn-orange { background: linear-gradient(135deg, #f59e0b, #ea580c); box-shadow: 0 4px 16px rgba(234,88,12,0.35); }
     .btn-orange:hover { box-shadow: 0 8px 24px rgba(234,88,12,0.45); }
+
+    /* Form styles */
+    .form-section-konstr { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 36px; margin: 48px 0; }
+    .form-section-konstr h2 { font-size: 1.5rem; margin-bottom: 8px; color: #1a1a2e; }
+    .form-section-konstr > p { color: #5a5a6e; margin-bottom: 20px; }
+    .form-grid-konstr { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 14px; }
+    .form-field-konstr {
+      background: #f8f9fc; border: 1px solid #e2e8f0; border-radius: 10px;
+      padding: 12px 14px; color: #1a1a2e; font-size: 0.95rem; width: 100%; transition: all 0.3s;
+    }
+    .form-field-konstr:focus { outline: none; border-color: #f59e0b; background: #fff; }
+    .form-field-konstr.textarea { grid-column: 1 / -1; min-height: 90px; resize: vertical; }
+    .btn-submit-konstr {
+      display: inline-block; padding: 12px 28px; border-radius: 50px;
+      font-weight: 600; font-size: 0.95rem; background: linear-gradient(135deg, #f59e0b, #ea580c);
+      color: #fff; border: none; cursor: pointer; transition: all 0.3s;
+    }
+    .btn-submit-konstr:hover { box-shadow: 0 8px 24px rgba(234,88,12,0.4); transform: translateY(-1px); }
+    .form-status {
+      margin-top: 12px; padding: 10px 16px; border-radius: 8px;
+      font-size: 0.9rem; text-align: center; display: none;
+    }
+    .form-status.success { background: rgba(34,197,94,0.1); color: #16a34a; border: 1px solid rgba(34,197,94,0.2); }
+    .form-status.error { background: rgba(239,68,68,0.1); color: #dc2626; border: 1px solid rgba(239,68,68,0.2); }
+    .form-status.warning { background: rgba(245,158,11,0.1); color: #d97706; border: 1px solid rgba(245,158,11,0.2); }
   </style>
 </head>
 <body>
@@ -145,15 +170,31 @@
       </div>
     </div>
   </section>
-<!-- Form -->
-<section id=form class=form-section animate>
-<h2>Обсудить проект</h2>
-<p>Оставьте заявку — свяжемся в течение дня. Без спама, только по делу.</p>
-<div style=max-width:650px;margin:0 auto;border-radius:12px;height:460px;position:relative;overflow:hidden;background:#fff;>
-<iframe src=https://forms.yandex.ru/u/6a6c0601f47e736c3f0dafca?iframe=1 frameborder=0 name=ya-form-6a6c0601f47e736c3f0dafca width=650 height=650 style=max-width:100%;position:absolute;top:0;left:0;border:none;></iframe>
-</div>
-</section>
-</section>
+
+  <!-- Form -->
+  <section id="form" class="form-section-konstr animate">
+    <h2>Обсудить проект</h2>
+    <p>Оставьте заявку — свяжемся в течение дня. Без спама, только по делу.</p>
+    <form data-form="khrom" data-source="konstruktor" style="max-width:680px;margin:0 auto;">
+      <div class="form-grid-konstr">
+        <input type="text" name="name" class="form-field-konstr" placeholder="Ваше имя" required>
+        <input type="tel" name="phone" class="form-field-konstr" placeholder="Телефон" required>
+        <input type="email" name="email" class="form-field-konstr" placeholder="Email">
+        <select name="direction" class="form-field-konstr">
+          <option value="" disabled selected>Направление</option>
+          <option value="Проектирование">Проектирование мебели</option>
+          <option value="Деталировка">Деталировка и ЧПУ</option>
+          <option value="БАЗИС">Работа в БАЗИСе</option>
+          <option value="Другое">Другое</option>
+        </select>
+        <textarea name="message" class="form-field-konstr textarea" placeholder="Опишите задачу..."></textarea>
+      </div>
+      <div style="text-align:center;margin-top:14px;">
+        <button type="submit" class="btn-submit-konstr">Отправить заявку</button>
+        <p style="color:#8a8a9a;font-size:0.82rem;margin-top:10px;">Или позвоните: <a href="tel:+79139094891" style="color:#ea580c;">+7 (913) 909-48-91</a></p>
+      </div>
+    </form>
+  </section>
 
   <div class="also-section animate">
     <h2>Другие направления</h2>
@@ -191,7 +232,7 @@
       <div class="footer-col">
         <h4>Связаться</h4>
         <a href="tel:+79139094891" class="phone-link">+7 (913) 909-48-91</a>
-        <a href=tel:+79628356365 class=phone-link>+7 (962) 835-63-65</a>
+        <a href="tel:+79628356365" class="phone-link">+7 (962) 835-63-65</a>
         <a href="mailto:proj@example.ru">proj@example.ru</a>
         <a href="https://t.me/KonstantKH" target="_blank">Telegram</a>
       </div>
@@ -210,5 +251,6 @@
   </div>
 </footer>
 
+<script src="js/form-handler.js"></script>
 </body>
 </html>

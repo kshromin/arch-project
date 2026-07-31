@@ -7,10 +7,10 @@
   <link rel="stylesheet" href="style.css">
   <style>
     :root {
-      --khrom-bg: #0a0a0f;
-      --khrom-surface: #12121a;
-      --khrom-surface-hover: #1a1a25;
-      --khrom-border: #2a2a3a;
+      --khrom-bg: #0f1117;
+      --khrom-surface: #181a22;
+      --khrom-surface-hover: #202330;
+      --khrom-border: #2a2d3a;
       --khrom-text: #e8e8ec;
       --khrom-text-dim: #8a8a9a;
       --khrom-chrome: linear-gradient(135deg, #c0c0c0 0%, #ffffff 50%, #a0a0a0 100%);
@@ -22,7 +22,7 @@
     /* Header */
     .khrom-header {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(10,10,15,0.92);
+      background: rgba(15,17,23,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--khrom-border);
     }
@@ -48,7 +48,7 @@
     /* Hero */
     .khrom-hero {
       position: relative;
-      background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0f 70%);
+      background: radial-gradient(ellipse at center, #1a1d2e 0%, #0f1117 70%);
       padding: 80px 24px 60px;
       overflow: hidden;
     }
@@ -66,14 +66,14 @@
     }
     .khrom-hero p {
       font-size: clamp(1rem, 2vw, 1.15rem);
-      color: var(--khrom-text-dim); line-height: 1.7; margin-bottom: 28px;
+      color: #a0a0b0; line-height: 1.7; margin-bottom: 28px;
     }
     .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn-chrome {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 13px 28px; border-radius: 50px;
       font-weight: 600; font-size: 0.92rem;
-      background: var(--khrom-chrome); color: #0a0a0f;
+      background: var(--khrom-chrome); color: #0f1117;
       transition: all 0.3s; border: none; cursor: pointer;
     }
     .btn-chrome:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(255,255,255,0.2); }
@@ -178,7 +178,7 @@
       content: counter(step);
       position: absolute; left: 0; top: 0;
       width: 40px; height: 40px;
-      background: var(--khrom-chrome); color: #0a0a0f;
+      background: var(--khrom-chrome); color: #0f1117;
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
       font-weight: 700; font-size: 1rem;
     }
@@ -224,6 +224,13 @@
     .form-field::placeholder { color: rgba(138,138,154,0.6); }
     .form-field:focus { outline: none; border-color: rgba(192,192,192,0.3); background: rgba(255,255,255,0.07); }
     .form-field.textarea { grid-column: 1 / -1; min-height: 100px; resize: vertical; }
+    .form-status {
+      margin-top: 14px; padding: 12px 18px; border-radius: 10px;
+      font-size: 0.92rem; text-align: center; display: none;
+    }
+    .form-status.success { background: rgba(34,197,94,0.1); color: #86efac; border: 1px solid rgba(34,197,94,0.2); }
+    .form-status.error { background: rgba(239,68,68,0.1); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+    .form-status.warning { background: rgba(245,158,11,0.1); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
 
     /* Also section */
     .also-section {
@@ -453,14 +460,30 @@
     </div>
   </section>
 
-<!-- Form -->
-<section id=form class=form-section style=background:#f8f9fc;border-color:#e2e8f0;>
-<h2 style=color:#1a1a2e;><span style=background:linear-gradient(135deg,#c0c0c0,#fff,#a0a0a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;>Обсудить</span> <span style=color:#1a1a2e;>проект</span></h2>
-<p style=color:#5a5a6e;>Оставьте заявку — свяжемся в течение дня. Без спама, только по делу.</p>
-<div style=max-width:650px;margin:0 auto;border-radius:12px;height:460px;position:relative;overflow:hidden;background:#fff;>
-<iframe src=https://forms.yandex.ru/u/6a6c0601f47e736c3f0dafca?iframe=1 frameborder=0 name=ya-form-6a6c0601f47e736c3f0dafca width=650 height=650 style=max-width:100%;position:absolute;top:0;left:0;border:none;></iframe>
-</div>
-</section>
+  <!-- Form -->
+  <section id="form" class="form-section">
+    <h2><span>Обсудить</span> проект</h2>
+    <p>Оставьте заявку — свяжемся в течение дня. Без спама, только по делу.</p>
+    <form data-form="khrom" data-source="khrom" style="max-width:720px;margin:0 auto;">
+      <div class="form-grid">
+        <input type="text" name="name" class="form-field" placeholder="Ваше имя" required>
+        <input type="tel" name="phone" class="form-field" placeholder="Телефон" required>
+        <input type="email" name="email" class="form-field" placeholder="Email">
+        <select name="direction" class="form-field" style="background:var(--khrom-surface);color:var(--khrom-text);">
+          <option value="" disabled selected>Направление</option>
+          <option value="IT-разработка">IT-разработка</option>
+          <option value="Конфигуратор">3D-конфигуратор мебели</option>
+          <option value="VPN">KHROM VPN</option>
+          <option value="Другое">Другое</option>
+        </select>
+        <textarea name="message" class="form-field textarea" placeholder="Опишите задачу..."></textarea>
+      </div>
+      <div style="text-align:center;margin-top:18px;">
+        <button type="submit" class="btn-chrome" style="border:none;cursor:pointer;">Отправить заявку</button>
+        <p style="color:var(--khrom-text-dim);font-size:0.82rem;margin-top:12px;">Или напишите: <a href="mailto:it@khrom-in.ru" style="color:#93c5fd;">it@khrom-in.ru</a> · <a href="https://t.me/KonstantKH" style="color:#93c5fd;" target="_blank">Telegram</a></p>
+      </div>
+    </form>
+  </section>
 
   <!-- Also we do -->
   <div class="also-section" id="contacts">
@@ -518,5 +541,6 @@
   </div>
 </footer>
 
+<script src="js/form-handler.js"></script>
 </body>
 </html>

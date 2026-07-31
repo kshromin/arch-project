@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Дашборд заявок — KHROM</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --khrom-bg: #0f1117;
+      --khrom-surface: #181a22;
+      --khrom-surface-hover: #202330;
+      --khrom-border: #2a2d3a;
+      --khrom-text: #e8e8ec;
+      --khrom-text-dim: #8a8a9a;
+      --khrom-chrome-text: linear-gradient(135deg, #d0d0d0 0%, #ffffff 50%, #b0b0b0 100%);
+      --accent: #3b82f6;
+      --success: #22c55e;
+      --warning: #f59e0b;
+    }
+    body {
+      background: var(--khrom-bg);
+      color: var(--khrom-text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .dashboard-header {
+      background: var(--khrom-surface);
+      border-bottom: 1px solid var(--khrom-border);
+      padding: 20px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .dashboard-header h1 {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    .dashboard-header h1 span {
+      background: var(--khrom-chrome-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .dashboard-header .meta {
+      color: var(--khrom-text-dim);
+      font-size: 0.88rem;
+    }
+
+    .dashboard-controls {
+      padding: 20px 32px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .dashboard-controls input, .dashboard-controls select {
+      background: var(--khrom-surface);
+      border: 1px solid var(--khrom-border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      color: var(--khrom-text);
+      font-size: 0.9rem;
+    }
+    .btn-refresh {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-refresh:hover { opacity: 0.85; }
+
+    .stats-row {
+      padding: 0 32px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+    }
+    .stat-card {
+      background: var(--khrom-surface);
+      border: 1px solid var(--khrom-border);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+    }
+    .stat-card .number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .stat-card .label {
+      font-size: 0.82rem;
+      color: var(--khrom-text-dim);
+      margin-top: 4px;
+    }
+
+    .table-container {
+      padding: 0 32px 32px;
+    }
+    .table-scroll {
+      overflow-x: auto;
+      border: 1px solid var(--khrom-border);
+      border-radius: 12px;
+      background: var(--khrom-surface);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    th {
+      background: var(--khrom-surface-hover);
+      color: var(--khrom-text);
+      font-weight: 600;
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--khrom-border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--khrom-border);
+      color: var(--khrom-text);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    .cell-dim { color: var(--khrom-text-dim); }
+    .cell-phone { font-family: monospace; font-size: 0.88rem; }
+    .cell-source {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .source-khrom { background: rgba(59,130,246,0.12); color: #60a5fa; }
+    .source-konstruktor { background: rgba(245,158,11,0.12); color: #fbbf24; }
+    .source-mebel { background: rgba(34,197,94,0.12); color: #86efac; }
+    .source-default { background: rgba(138,138,154,0.12); color: #a0a0b0; }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--khrom-text-dim);
+    }
+    .empty-state svg {
+      width: 64px; height: 64px;
+      stroke: var(--khrom-border);
+      margin-bottom: 16px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--khrom-text-dim);
+    }
+    .loading::after {
+      content: '';
+      display: inline-block;
+      width: 16px; height: 16px;
+      border: 2px solid var(--khrom-border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .setup-hint {
+      margin: 20px 32px;
+      padding: 16px 20px;
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.2);
+      border-radius: 10px;
+      color: #fbbf24;
+      font-size: 0.9rem;
+    }
+    .setup-hint a { color: #93c5fd; }
+
+    @media (max-width: 768px) {
+      .dashboard-header, .dashboard-controls, .stats-row, .table-container {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="dashboard-header">
+  <h1><span>KHROM</span> — Дашборд заявок</h1>
+  <div class="meta">Обновляется автоматически из Google Sheets</div>
+</div>
+
+<div class="dashboard-controls">
+  <input type="text" id="searchInput" placeholder="Поиск по имени, телефону, email...">
+  <select id="filterSource">
+    <option value="">Все направления</option>
+    <option value="IT-разработка">IT-разработка</option>
+    <option value="Конфигуратор">Конфигуратор</option>
+    <option value="Проектирование">Проектирование</option>
+    <option value="Мебель">Мебель</option>
+    <option value="Домокомплекты">Домокомплекты</option>
+    <option value="Строительство">Строительство</option>
+  </select>
+  <button class="btn-refresh" onclick="loadData()">🔄 Обновить</button>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="number" id="statTotal">—</div>
+    <div class="label">Всего заявок</div>
+  </div>
+  <div class="stat-card">
+    <div class="number" id="statToday">—</div>
+    <div class="label">Сегодня</div>
+  </div>
+  <div class="stat-card">
+    <div class="number" id="statWeek">—</div>
+    <div class="label">За неделю</div>
+  </div>
+  <div class="stat-card">
+    <div class="number" id="statLast">—</div>
+    <div class="label">Последняя</div>
+  </div>
+</div>
+
+<div class="setup-hint" id="setupHint" style="display:none;">
+  ⚠️ Дашборд ещё не настроен. Чтобы увидеть заявки, нужно:<br>
+  1. <a href="GOOGLE_SETUP.html" target="_blank">Выполнить настройку Google Sheets</a><br>
+  2. Вставить ID таблицы в скрипт ниже (строка с SHEET_ID)
+</div>
+
+<div class="table-container">
+  <div class="table-scroll">
+    <div class="loading" id="loading">Загрузка данных...</div>
+    <table id="leadsTable" style="display:none;">
+      <thead>
+        <tr>
+          <th>Дата</th>
+          <th>Имя</th>
+          <th>Телефон</th>
+          <th>Email</th>
+          <th>Направление</th>
+          <th>Сообщение</th>
+          <th>Источник</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// ===== НАСТРОЙКА: вставьте ID публичной Google Sheets таблицы =====
+// Как получить: откройте таблицу в браузере, скопируйте часть URL между /d/ и /edit
+// Пример: https://docs.google.com/spreadsheets/d/1ABC...XYZ/edit → ID: 1ABC...XYZ
+const SHEET_ID = 'ВАШ_SHEET_ID';
+const SHEET_NAME = 'Sheet1'; // имя листа (по умолчанию Sheet1)
+// ==================================================================
+
+const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${SHEET_NAME}`;
+
+let allRows = [];
+
+async function loadData() {
+  const loading = document.getElementById('loading');
+  const table = document.getElementById('leadsTable');
+  const setupHint = document.getElementById('setupHint');
+  const tbody = document.getElementById('tableBody');
+
+  if (SHEET_ID === 'ВАШ_SHEET_ID') {
+    loading.style.display = 'none';
+    setupHint.style.display = 'block';
+    table.style.display = 'none';
+    return;
+  }
+
+  loading.style.display = 'block';
+  table.style.display = 'none';
+  setupHint.style.display = 'none';
+
+  try {
+    const response = await fetch(CSV_URL);
+    const csvText = await response.text();
+    allRows = parseCSV(csvText);
+    
+    // Убираем заголовок
+    allRows = allRows.slice(1);
+    
+    // Сортируем по дате (новые сверху)
+    allRows.sort((a, b) => {
+      const da = new Date(a[0] || 0);
+      const db = new Date(b[0] || 0);
+      return db - da;
+    });
+
+    renderTable(allRows);
+    updateStats(allRows);
+
+    loading.style.display = 'none';
+    table.style.display = 'table';
+
+  } catch (err) {
+    console.error('Dashboard load error:', err);
+    loading.textContent = '❌ Не удалось загрузить данные. Проверьте, что таблица опубликована (Файл → Опубликовать в интернете). Подробнее в GOOGLE_SETUP.html';
+    setupHint.style.display = 'block';
+  }
+}
+
+function parseCSV(text) {
+  const rows = [];
+  let row = [];
+  let cell = '';
+  let inQuotes = false;
+  
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    const next = text[i + 1];
+    
+    if (inQuotes) {
+      if (char === '"' && next === '"') {
+        cell += '"';
+        i++;
+      } else if (char === '"') {
+        inQuotes = false;
+      } else {
+        cell += char;
+      }
+    } else {
+      if (char === '"') {
+        inQuotes = true;
+      } else if (char === ',') {
+        row.push(cell.trim());
+        cell = '';
+      } else if (char === '\n') {
+        row.push(cell.trim());
+        rows.push(row);
+        row = [];
+        cell = '';
+      } else {
+        cell += char;
+      }
+    }
+  }
+  
+  if (cell || row.length > 0) {
+    row.push(cell.trim());
+    rows.push(row);
+  }
+  
+  return rows;
+}
+
+function renderTable(rows) {
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+
+  if (rows.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7"><div class="empty-state">📭 Пока нет заявок. Они появятся здесь автоматически.</div></td></tr>`;
+    return;
+  }
+
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const filterDir = document.getElementById('filterSource').value;
+
+  let visibleCount = 0;
+
+  rows.forEach(cols => {
+    const date = cols[0] || '';
+    const name = cols[1] || '';
+    const phone = cols[2] || '';
+    const email = cols[3] || '';
+    const msg = cols[4] || '';
+    const direction = cols[5] || '';
+    const source = cols[6] || '';
+
+    // Фильтры
+    const text = `${name} ${phone} ${email} ${msg}`.toLowerCase();
+    if (search && !text.includes(search)) return;
+    if (filterDir && direction !== filterDir) return;
+
+    visibleCount++;
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="cell-dim">${formatDate(date)}</td>
+      <td>${escapeHtml(name) || '—'}</td>
+      <td class="cell-phone">${escapeHtml(phone) || '—'}</td>
+      <td>${escapeHtml(email) || '—'}</td>
+      <td>${escapeHtml(direction) || '—'}</td>
+      <td>${escapeHtml(msg).substring(0, 80)}${msg.length > 80 ? '...' : ''}</td>
+      <td><span class="cell-source ${sourceClass(source)}">${escapeHtml(source) || 'site'}</span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  if (visibleCount === 0) {
+    tbody.innerHTML = `<tr><td colspan="7"><div class="empty-state">🔍 Ничего не найдено по фильтру.</div></td></tr>`;
+  }
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '—';
+  try {
+    const d = new Date(dateStr);
+    if (isNaN(d)) return dateStr;
+    return d.toLocaleString('ru-RU', { 
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    });
+  } catch { return dateStr; }
+}
+
+function sourceClass(s) {
+  const map = {
+    'khrom': 'source-khrom',
+    'it': 'source-khrom',
+    'konstruktor': 'source-konstruktor',
+    'mebel': 'source-mebel'
+  };
+  return map[s?.toLowerCase()] || 'source-default';
+}
+
+function escapeHtml(text) {
+  if (!text) return '';
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function updateStats(rows) {
+  document.getElementById('statTotal').textContent = rows.length;
+  
+  const now = new Date();
+  const today = rows.filter(r => {
+    const d = new Date(r[0] || 0);
+    return d.toDateString() === now.toDateString();
+  }).length;
+  document.getElementById('statToday').textContent = today;
+
+  const weekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000);
+  const week = rows.filter(r => new Date(r[0] || 0) > weekAgo).length;
+  document.getElementById('statWeek').textContent = week;
+
+  const last = rows[0];
+  document.getElementById('statLast').textContent = last ? formatDate(last[0]).split(',')[0] : '—';
+}
+
+// Фильтры
+function applyFilters() {
+  renderTable(allRows);
+}
+
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+document.getElementById('filterSource').addEventListener('change', applyFilters);
+
+// Загрузка при старте
+loadData();
+// Автообновление каждые 2 минуты
+setInterval(loadData, 120000);
+</script>
+
+</body>
+</html>
