@@ -1,224 +1,426 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="it">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Архитектура Проекта — IT-разработка</title>
+  <title>KHROM — 3D-конфигуратор мебели и IT-разработка</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .vpn-section {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      color: #fff;
-      border-radius: 24px;
-      padding: 48px;
-      margin: 48px 0;
+    /* ===== KHROM Dark Theme ===== */
+    :root {
+      --khrom-bg: #0a0a0f;
+      --khrom-surface: #12121a;
+      --khrom-surface-hover: #1a1a25;
+      --khrom-border: #2a2a3a;
+      --khrom-text: #e8e8ec;
+      --khrom-text-dim: #8a8a9a;
+      --khrom-chrome: linear-gradient(135deg, #c0c0c0 0%, #ffffff 50%, #a0a0a0 100%);
+      --khrom-chrome-text: linear-gradient(135deg, #d0d0d0 0%, #ffffff 50%, #b0b0b0 100%);
+      --khrom-accent: #3b82f6;
+      --khrom-glow: 0 0 30px rgba(192,192,192,0.15);
+    }
+
+    body { background: var(--khrom-bg); color: var(--khrom-text); }
+
+    /* Header */
+    .khrom-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,15,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--khrom-border);
+    }
+    .khrom-header-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 14px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .khrom-logo { display: flex; align-items: center; gap: 12px; }
+    .khrom-logo img { height: 36px; width: auto; }
+    .khrom-logo span {
+      font-size: 1.1rem; font-weight: 700; letter-spacing: 0.15em;
+      background: var(--khrom-chrome-text);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .khrom-nav { display: flex; gap: 28px; }
+    .khrom-nav a {
+      font-size: 0.9rem; font-weight: 500;
+      color: var(--khrom-text-dim); transition: all 0.3s;
+      position: relative; padding: 4px 0;
+    }
+    .khrom-nav a:hover { color: #fff; }
+    .khrom-nav a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+      background: var(--khrom-chrome); transition: width 0.3s;
+    }
+    .khrom-nav a:hover::after { width: 100%; }
+
+    /* Hero */
+    .khrom-hero {
       position: relative;
+      background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0f 70%);
+      padding: 80px 24px 60px;
+      text-align: center;
       overflow: hidden;
     }
-    .vpn-section::before {
-      content: '';
-      position: absolute;
-      top: -80px; right: -80px;
-      width: 240px; height: 240px;
-      background: radial-gradient(circle, rgba(47,111,237,0.25) 0%, transparent 70%);
+    .khrom-hero::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: url('img/khrom-logo.png') center 20% / 280px auto no-repeat;
+      opacity: 0.06; pointer-events: none;
     }
-    .vpn-section h2 { font-size: 1.8rem; margin-bottom: 8px; position: relative; z-index: 1; }
-    .vpn-section > p.desc { opacity: 0.75; margin-bottom: 28px; position: relative; z-index: 1; }
-    .vpn-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      position: relative; z-index: 1;
+    .khrom-hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+    .khrom-hero-logo {
+      max-height: 120px; width: auto; margin-bottom: 24px;
+      filter: drop-shadow(0 0 40px rgba(192,192,192,0.2));
     }
-    .vpn-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
+    .khrom-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+      letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 16px;
+    }
+    .khrom-hero h1 span {
+      background: var(--khrom-chrome-text);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .khrom-hero p {
+      font-size: 1.1rem; color: var(--khrom-text-dim);
+      max-width: 600px; margin: 0 auto 32px; line-height: 1.7;
+    }
+    .khrom-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-chrome {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px; border-radius: 50px;
+      font-weight: 600; font-size: 0.95rem;
+      background: var(--khrom-chrome); color: #0a0a0f;
+      box-shadow: var(--khrom-glow);
+      transition: all 0.3s; border: none; cursor: pointer;
+    }
+    .btn-chrome:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(255,255,255,0.25); }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px; border-radius: 50px;
+      font-weight: 600; font-size: 0.95rem;
+      background: transparent; color: var(--khrom-text);
+      border: 1px solid var(--khrom-border);
+      transition: all 0.3s;
+    }
+    .btn-dark:hover { border-color: rgba(192,192,192,0.4); background: rgba(255,255,255,0.04); }
+
+    /* Container */
+    .khrom-container { max-width: 1200px; margin: 0 auto; padding: 64px 24px; }
+    .khrom-section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700;
+      margin-bottom: 12px; letter-spacing: -0.01em;
+    }
+    .khrom-section-title span {
+      background: var(--khrom-chrome-text);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .khrom-section-subtitle { color: var(--khrom-text-dim); font-size: 1rem; margin-bottom: 40px; }
+
+    /* Configurator Section */
+    .config-section {
+      background: var(--khrom-surface);
+      border: 1px solid var(--khrom-border);
+      border-radius: 20px;
+      padding: 48px;
+      margin-bottom: 48px;
+    }
+    .config-badge {
+      display: inline-block; padding: 6px 16px; border-radius: 50px;
+      font-size: 0.8rem; font-weight: 600;
+      background: rgba(59,130,246,0.15); color: var(--khrom-accent);
+      margin-bottom: 20px;
+    }
+    .config-grid {
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center;
+    }
+    .config-text h3 {
+      font-size: 1.6rem; font-weight: 700; margin-bottom: 16px;
+    }
+    .config-text h3 span {
+      background: var(--khrom-chrome-text);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .config-text p { color: var(--khrom-text-dim); line-height: 1.7; margin-bottom: 16px; }
+    .config-features { list-style: none; margin-bottom: 24px; }
+    .config-features li {
+      display: flex; align-items: center; gap: 10px;
+      color: var(--khrom-text-dim); margin-bottom: 10px; font-size: 0.95rem;
+    }
+    .config-features li::before { content: '✓'; color: #22c55e; font-weight: 700; }
+    .config-video {
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--khrom-border);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .config-video video { width: 100%; display: block; }
+
+    /* Video Section (KHROM reel) */
+    .video-section {
+      text-align: center; padding: 48px 0;
+    }
+    .video-wrapper {
+      max-width: 720px; margin: 0 auto;
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--khrom-border);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .video-wrapper video { width: 100%; display: block; }
+
+    /* Cards */
+    .khrom-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
+    }
+    .khrom-card {
+      background: var(--khrom-surface);
+      border: 1px solid var(--khrom-border);
       border-radius: 16px;
       padding: 28px;
-      text-align: center;
-      transition: all .3s ease;
+      transition: all 0.3s;
     }
-    .vpn-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); }
-    .vpn-card .os-icon {
-      width: 56px; height: 56px; border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 16px; font-size: 1.6rem;
-      background: rgba(255,255,255,0.08);
+    .khrom-card:hover {
+      background: var(--khrom-surface-hover);
+      border-color: rgba(192,192,192,0.2);
+      transform: translateY(-4px);
     }
-    .vpn-card h4 { font-size: 1.1rem; margin-bottom: 6px; }
-    .vpn-card p { font-size: 0.9rem; opacity: 0.7; margin-bottom: 16px; }
-    .btn-download {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 24px; border-radius: 50px;
-      font-weight: 600; font-size: 0.9rem;
-      background: linear-gradient(135deg, #2f6fed 0%, #1a5ad1 100%);
-      color: #fff;
-      box-shadow: 0 4px 16px rgba(47,111,237,0.35);
-      transition: all .3s ease;
+    .khrom-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+    .khrom-card p { color: var(--khrom-text-dim); font-size: 0.94rem; line-height: 1.6; }
+
+    /* VPN Section */
+    .vpn-section {
+      background: linear-gradient(135deg, #0c0c14 0%, #151520 100%);
+      border: 1px solid var(--khrom-border);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 48px 0;
     }
-    .btn-download:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(47,111,237,0.5); color: #fff; }
-    .vpn-order {
-      margin-top: 32px; padding-top: 32px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      position: relative; z-index: 1;
+    .vpn-section h2 { font-size: 1.6rem; margin-bottom: 8px; }
+    .vpn-section h2 span {
+      background: var(--khrom-chrome-text);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .vpn-order h3 { font-size: 1.3rem; margin-bottom: 8px; }
-    .vpn-order p { opacity: 0.75; margin-bottom: 20px; }
-    .vpn-contacts { display: flex; gap: 12px; flex-wrap: wrap; }
+    .vpn-section > p { color: var(--khrom-text-dim); margin-bottom: 24px; }
+    .vpn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .vpn-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px; padding: 24px; text-align: center;
+    }
+    .vpn-card .os-icon { font-size: 2rem; margin-bottom: 10px; }
+    .vpn-card h4 { font-size: 1rem; margin-bottom: 6px; }
+    .vpn-card p { color: var(--khrom-text-dim); font-size: 0.85rem; margin-bottom: 14px; }
+    .btn-download-sm {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 20px; border-radius: 50px;
+      font-weight: 600; font-size: 0.85rem;
+      background: var(--khrom-chrome); color: #0a0a0f;
+      transition: all 0.3s;
+    }
+    .btn-download-sm:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(255,255,255,0.15); }
+    .vpn-order { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--khrom-border); }
+    .vpn-order h3 { font-size: 1.2rem; margin-bottom: 8px; }
+    .vpn-order p { color: var(--khrom-text-dim); margin-bottom: 16px; }
+    .vpn-contacts { display: flex; gap: 10px; flex-wrap: wrap; }
     .vpn-contacts a {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 20px; border-radius: 50px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #fff; font-weight: 500; font-size: 0.9rem;
-      transition: all .3s ease;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 18px; border-radius: 50px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--khrom-text); font-size: 0.85rem;
+      transition: all 0.3s;
     }
-    .vpn-contacts a:hover { background: rgba(255,255,255,0.15); color: #fff; }
-    .logo-img { height: 32px; width: auto; vertical-align: middle; }
-    .vpn-logo { max-height: 90px; width: auto; margin-bottom: 16px; position: relative; z-index: 1; }
+    .vpn-contacts a:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+
+    /* Contacts */
+    .contacts-section {
+      background: var(--khrom-surface);
+      border: 1px solid var(--khrom-border);
+      border-radius: 20px;
+      padding: 48px;
+      text-align: center;
+    }
+    .contacts-section h2 { font-size: 1.8rem; margin-bottom: 8px; }
+    .contacts-section h2 span {
+      background: var(--khrom-chrome-text);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .contacts-section > p { color: var(--khrom-text-dim); margin-bottom: 28px; }
+    .contacts-grid { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 50px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    .contact-btn-primary {
+      background: var(--khrom-chrome); color: #0a0a0f;
+    }
+    .contact-btn-primary:hover { box-shadow: 0 0 30px rgba(255,255,255,0.2); transform: translateY(-2px); }
+    .contact-btn-secondary {
+      background: rgba(255,255,255,0.05); color: var(--khrom-text);
+      border: 1px solid var(--khrom-border);
+    }
+    .contact-btn-secondary:hover { border-color: rgba(192,192,192,0.3); background: rgba(255,255,255,0.08); }
+
+    /* Footer */
+    .khrom-footer {
+      border-top: 1px solid var(--khrom-border);
+      padding: 40px 24px 24px;
+      text-align: center;
+    }
+    .khrom-footer p { color: var(--khrom-text-dim); font-size: 0.9rem; }
+    .khrom-footer a { color: var(--khrom-text-dim); transition: color 0.3s; }
+    .khrom-footer a:hover { color: #fff; }
+
+    @media (max-width: 900px) {
+      .config-grid { grid-template-columns: 1fr; }
+      .khrom-header-inner { flex-direction: column; gap: 12px; }
+      .khrom-nav { gap: 20px; }
+    }
   </style>
 </head>
 <body>
 
-<header class="header">
-  <div class="header-inner">
-    <div class="logo"><a href="index.html">← Портфолио</a> / <img src="img/khrom-logo.png" alt="KHROM" class="logo-img"></div>
-    <nav class="nav">
-      <a href="index.html">Главная</a>
-      <a href="konstruktor.html">Конструкторы</a>
-      <a href="mebel.html">Мебель</a>
-      <a href="fanera.html">Домокомплекты</a>
-      <a href="stroitelstvo.html">Строительство</a>
+<!-- Header -->
+<header class="khrom-header">
+  <div class="khrom-header-inner">
+    <div class="khrom-logo">
+      <img src="img/khrom-logo.png" alt="KHROM">
+      <span>KHROM</span>
+    </div>
+    <nav class="khrom-nav">
+      <a href="index.html">Портфолио</a>
+      <a href="#configurator">Конфигуратор</a>
+      <a href="#services">Услуги</a>
+      <a href="#vpn">VPN</a>
+      <a href="#contacts">Контакты</a>
     </nav>
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-split">
-    <div class="hero-text">
-      <h1>Архитектура Проекта</h1>
-      <p>IT-разработка, 3D-конфигураторы и цифровая трансформация производства. Проектируем архитектуру программных решений так же тщательно, как инженеры проектируют здания.</p>
-      <div class="hero-btns">
-        <a class="btn" href="#contacts">Обсудить проект</a>
-        <a class="btn btn-outline" href="mebel.html">Посмотреть конфигуратор</a>
-      </div>
-    </div>
-    <div class="hero-media">
-      <img src="img/it/hero.png" alt="3D-конфигуратор мебели на экране ноутбука">
+<!-- Hero -->
+<section class="khrom-hero">
+  <div class="khrom-hero-content">
+    <img src="img/khrom-logo.png" alt="KHROM" class="khrom-hero-logo">
+    <h1><span>3D-конфигуратор мебели</span><br>для мебельщиков</h1>
+    <p>Рисуйте мебель прямо в браузере, считайте стоимость за минуты. Быстро, наглядно, без лишних программ. Уже используем сами — скоро откроем для всех.</p>
+    <div class="khrom-btns">
+      <a class="btn-chrome" href="#configurator">Посмотреть демо</a>
+      <a class="btn-dark" href="mailto:it@khrom-in.ru?subject=Конфигуратор мебели — заявка на доступ&body=Здравствуйте,%0A%0AИнтересует 3D-конфигуратор мебели.%0A%0AИмя:%0AТелефон:%0AEmail:%0AГород:%0A%0A">Запросить доступ</a>
     </div>
   </div>
 </section>
 
-<main class="container">
-  <h2 class="section-title">Услуги</h2>
-  <div class="features">
-    <div class="feature">
-      <h4>3D-конфигураторы</h4>
-      <p>Интерактивные онлайн-конструкторы для мебели, интерьеров и промышленных изделий. Платформа Outline3D + собственная кастомизация.</p>
-    </div>
-    <div class="feature">
-      <h4>Веб-разработка</h4>
-      <p>Лендинги, корпоративные сайты, личные кабинеты, порталы. От прототипа до публикации с учётом SEO и скорости.</p>
-    </div>
-    <div class="feature">
-      <h4>Интеграция и API</h4>
-      <p>Связка сайтов с 1С, CRM, ERP, производственными системами. Автоматизация обмена заказами, складом и документооборотом.</p>
-    </div>
-    <div class="feature">
-      <h4>Автоматизация бизнеса</h4>
-      <p>Цифровизация процессов: от онлайн-заявки до задания на производство. Убираем ручной труд и ошибки.</p>
+<!-- Configurator Section -->
+<section class="khrom-container" id="configurator">
+  <div class="config-section">
+    <span class="config-badge">🚧 В разработке — заявки уже принимаем</span>
+    <div class="config-grid">
+      <div class="config-text">
+        <h3><span>Конфигуратор мебели</span><br>для производства и продаж</h3>
+        <p>Интерактивный онлайн-конструктор шкафов, кухонь и гардеробных. Клиент рисует — вы сразу видите деталировку, расход материалов и стоимость.</p>
+        <ul class="config-features">
+          <li>Параметрическая геометрия — меняйте размеры в реальном времени</li>
+          <li>Расчёт цены автоматически по вашему прайсу</li>
+          <li>3D-визуализация с реалистичными материалами</li>
+          <li>Экспорт деталировки в БАЗИС-Мебельщик</li>
+          <li>Работает в браузере — ничего устанавливать не нужно</li>
+        </ul>
+        <a class="btn-chrome" href="mailto:it@khrom-in.ru?subject=Конфигуратор мебели — заявка на доступ&body=Здравствуйте,%0A%0AИнтересует 3D-конфигуратор мебели.%0A%0AИмя:%0AТелефон:%0AEmail:%0AГород:%0A%0A">Оставить заявку на доступ</a>
+      </div>
+      <div class="config-video">
+        <video controls poster="img/it/hero.png" preload="metadata">
+          <source src="video/Конфигуратор_мебели_сжатый.mp4" type="video/mp4">
+          Ваш браузер не поддерживает видео.
+        </video>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- VPN Section -->
-  <section class="vpn-section" id="vpn">
-    <img src="img/khrom-logo.png" alt="KHROM" class="vpn-logo">
-    <h2>KHROM VPN</h2>
-    <p class="desc">Приватный VPN-туннель для работы и личного использования. Собственные приложения для Android и Windows.</p>
+<!-- KHROM Reel -->
+<section class="khrom-container video-section">
+  <h2 class="khrom-section-title"><span>KHROM</span> в деталях</h2>
+  <p class="khrom-section-subtitle">Короткий ролик о том, что мы делаем</p>
+  <div class="video-wrapper">
+    <video controls preload="metadata">
+      <source src="video/Ролик_KHROM_v1.mp4" type="video/mp4">
+      Ваш браузер не поддерживает видео.
+    </video>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="khrom-container" id="services">
+  <h2 class="khrom-section-title">IT-<span>разработка</span></h2>
+  <p class="khrom-section-subtitle">Что ещё делаем под брендом KHROM</p>
+  <div class="khrom-grid">
+    <div class="khrom-card">
+      <h4>🌐 Веб-разработка</h4>
+      <p>Лендинги, корпоративные сайты, личные кабинеты. От прототипа до публикации с учётом SEO и скорости.</p>
+    </div>
+    <div class="khrom-card">
+      <h4>🔗 Интеграция и API</h4>
+      <p>Связка сайтов с 1С, CRM, ERP. Автоматизация обмена заказами, складом и документооборотом.</p>
+    </div>
+    <div class="khrom-card">
+      <h4>⚙️ Автоматизация бизнеса</h4>
+      <p>Цифровизация процессов: от онлайн-заявки до задания на производство.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VPN Section -->
+<section class="khrom-container" id="vpn">
+  <div class="vpn-section">
+    <h2><span>KHROM</span> VPN</h2>
+    <p>Приватный VPN-туннель для работы и личного использования. Собственные приложения.</p>
     <div class="vpn-grid">
       <div class="vpn-card">
         <div class="os-icon">🤖</div>
         <h4>Android</h4>
-        <p>Скачайте .apk и установите вручную. Работает на Android 8+.</p>
-        <a class="btn-download" href="downloads/KHROM-VPN-Android-0.4.0.apk" download>Скачать .apk</a>
+        <p>Скачайте .apk и установите. Android 8+.</p>
+        <a class="btn-download-sm" href="downloads/KHROM-VPN-Android-0.4.0.apk" download>Скачать .apk</a>
       </div>
       <div class="vpn-card">
         <div class="os-icon">🪟</div>
         <h4>Windows</h4>
-        <p>Установщик для Windows 10/11. Скачайте и запустите exe.</p>
-        <a class="btn-download" href="downloads/KHROM%20VPN.exe" download>Скачать .exe</a>
+        <p>Установщик для Windows 10/11.</p>
+        <a class="btn-download-sm" href="downloads/KHROM%20VPN.exe" download>Скачать .exe</a>
       </div>
     </div>
     <div class="vpn-order">
       <h3>Заказать туннель</h3>
-      <p>Напишите нам — подготовим конфигурацию под ваши устройства и задачи.</p>
+      <p>Подготовим конфигурацию под ваши устройства.</p>
       <div class="vpn-contacts">
-        <a href="mailto:it@khrom-in.ru?subject=Заказ VPN-туннеля&body=Здравствуйте,%0A%0AХочу заказать VPN-туннель.%0A%0AУстройства:%0AСрок:%0AТелефон / Telegram:%0A%0A">📧 Заявка: it@khrom-in.ru</a>
-        <a href="mailto:support@khrom-in.ru">🛟 Поддержка: support@khrom-in.ru</a>
+        <a href="mailto:it@khrom-in.ru?subject=Заказ VPN-туннеля">📧 it@khrom-in.ru</a>
+        <a href="mailto:support@khrom-in.ru">🛟 support@khrom-in.ru</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <h2 class="section-title" style="margin-top:40px">Почему обращаются к нам</h2>
-  <div class="features">
-    <div class="feature">
-      <h4>Понимаем производство</h4>
-      <p>Мы не просто разработчики — мы работаем с мебельным производством, конструкторами и строителями. Знаем, как устроен цикл от заявки до отгрузки.</p>
-    </div>
-    <div class="feature">
-      <h4>Готовый продукт</h4>
-      <p>Конфигуратор, который уже продаёт мебель, — лучшее доказательство. Мы используем свои же технологии в соседнем направлении.</p>
-    </div>
-    <div class="feature">
-      <h4>Масштабирование</h4>
-      <p>Решения растут вместе с бизнесом. От стартапа до полноценной фабрики с ERP и 3D-визуализацией.</p>
+<!-- Contacts -->
+<section class="khrom-container" id="contacts">
+  <div class="contacts-section">
+    <h2><span>Связаться</span> с нами</h2>
+    <p>Заявки на конфигуратор, IT-разработку, VPN — пишите, отвечаем быстро</p>
+    <div class="contacts-grid">
+      <a class="contact-btn contact-btn-primary" href="mailto:it@khrom-in.ru?subject=Конфигуратор мебели — заявка на доступ">
+        📧 it@khrom-in.ru
+      </a>
+      <a class="contact-btn contact-btn-secondary" href="https://t.me/KonstantKH" target="_blank">
+        💬 Telegram: @KonstantKH
+      </a>
+      <a class="contact-btn contact-btn-secondary" href="tel:+79039310848">
+        📞 +7 (903) 931-08-48
+      </a>
     </div>
   </div>
+</section>
 
-  <h2 class="section-title" style="margin-top:40px">Как мы работаем</h2>
-  <div class="steps">
-    <div class="step">
-      <h4>Аудит и архитектура</h4>
-      <p>Изучаем бизнес-процессы, проектируем структуру системы и выбираем технологический стек.</p>
-    </div>
-    <div class="step">
-      <h4>Прототип и дизайн</h4>
-      <p>Делаем наброски интерфейсов, схемы данных, пайплайн интеграций. Согласовываем до кода.</p>
-    </div>
-    <div class="step">
-      <h4>Разработка</h4>
-      <p>Кодим бэкенд, фронтенд, настраиваем интеграции. Показываем промежуточные сборки каждую неделю.</p>
-    </div>
-    <div class="step">
-      <h4>Запуск и поддержка</h4>
-      <p>Разворачиваем, обучаем сотрудников, мониторим стабильность. Дорабатываем по реальному использованию.</p>
-    </div>
-  </div>
-
-  <h2 class="section-title" style="margin-top:40px">Связанные направления</h2>
-  <div class="grid">
-    <a class="card" href="konstruktor.html">
-      <h3>Конструкторские услуги</h3>
-      <p>Если у вас уже есть конструкторы в штате, мы помогаем их услугами через цифровые каналы.</p>
-      <div class="meta">Перейти →</div>
-    </a>
-    <a class="card" href="mebel.html">
-      <h3>Мебельный салон</h3>
-      <p>Живой пример 3D-конфигуратора и полного цикла от заказа до производства.</p>
-      <div class="meta">Перейти →</div>
-    </a>
-    <a class="card" href="fanera.html">
-      <h3>Домокомплекты из фанеры</h3>
-      <p>Для производителей: конфигуратор подбора комплектаций и расчёт материалов.</p>
-      <div class="meta">Перейти →</div>
-    </a>
-  </div>
-</main>
-
-<footer class="footer" id="contacts">
-  <p>Архитектура Проекта — IT-разработка и цифровизация производства.</p>
-  <p style="margin-top:8px; opacity:.7">Заявки: <a href="mailto:it@khrom-in.ru">it@khrom-in.ru</a> | Поддержка: <a href="mailto:support@khrom-in.ru">support@khrom-in.ru</a></p>
-  <p style="margin-top:12px"><a href="index.html">← Вернуться на портал</a></p>
+<!-- Footer -->
+<footer class="khrom-footer">
+  <p>KHROM — IT-разработка и цифровизация производства · <a href="index.html">← Вернуться на портал</a></p>
 </footer>
 
 </body>
