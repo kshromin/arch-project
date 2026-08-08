@@ -56,17 +56,6 @@ async function handleFormSubmit(e) {
     message: message,
     direction: formData.get('direction') || ''
   };
-  const formData = new FormData(form);
-  const data = {
-    timestamp: new Date().toISOString(),
-    source: form.dataset.source || 'site',
-    page: window.location.pathname,
-    name: formData.get('name') || '',
-    phone: formData.get('phone') || '',
-    email: formData.get('email') || '',
-    message: formData.get('message') || '',
-    direction: formData.get('direction') || ''
-  };
 
   // Блокируем кнопку
   if (btn) {
