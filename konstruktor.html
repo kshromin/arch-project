@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Проектирование и деталировка — мебель, БАЗИС, ЧПУ</title>
+  <title>Проектирование мебели в БАЗИС — чертежи, деталировка, карты раскроя для производства</title>
+  <meta name="description" content="Конструкторское бюро: проектирование корпусной мебели в БАЗИС-Мебельщик, деталировка, карты раскроя, программы для ЧПУ. 20 лет опыта, своё мебельное производство. От 400 ₽/м².">
   <link rel="stylesheet" href="style.css">
   <style>
     .hero-accent {
@@ -27,6 +28,59 @@
 
     .btn-orange { background: linear-gradient(135deg, #f59e0b, #ea580c); box-shadow: 0 4px 16px rgba(234,88,12,0.35); }
     .btn-orange:hover { box-shadow: 0 8px 24px rgba(234,88,12,0.45); }
+
+    /* Stats bar */
+    .stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin: 40px 0 8px; }
+    .stat-item { text-align: center; padding: 20px 12px; background: #fff; border: 1px solid var(--border); border-radius: 12px; }
+    .stat-num { font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, #f59e0b, #ea580c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-label { font-size: 0.88rem; color: #5a5a6e; margin-top: 4px; }
+
+    /* Pain cards */
+    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .pain-card { background: #fff; border: 1px solid var(--border); border-left: 4px solid #ea580c; border-radius: 12px; padding: 20px; }
+    .pain-card h4 { margin-bottom: 8px; color: #1a1a2e; }
+    .pain-card p { color: #5a5a6e; font-size: 0.95rem; }
+
+    /* Price table */
+    .price-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
+    .price-table th, .price-table td { padding: 16px 18px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .price-table th { background: linear-gradient(135deg, #1a1a2e, #2d2d44); color: #fff; font-size: 0.95rem; }
+    .price-table tr:last-child td { border-bottom: none; }
+    .price-table tr:hover td { background: #fafbfd; }
+    .price-value { font-weight: 800; color: #ea580c; white-space: nowrap; font-size: 1.05rem; }
+    .price-note { color: #8a8a9a; font-size: 0.85rem; margin-top: 12px; }
+
+    /* Scenario cards */
+    .scenario-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .scenario-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 24px; transition: all 0.3s; }
+    .scenario-card:hover { box-shadow: 0 12px 32px rgba(26,26,46,0.08); transform: translateY(-3px); }
+    .scenario-tag { display: inline-block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #ea580c; background: #fff4e8; border-radius: 50px; padding: 4px 12px; margin-bottom: 12px; }
+    .scenario-card h4 { margin-bottom: 8px; }
+    .scenario-card p { color: #5a5a6e; font-size: 0.95rem; }
+
+    /* B2C block */
+    .b2c-block { background: linear-gradient(135deg, #1a1a2e, #2d2d44); border-radius: 18px; padding: 40px; color: #fff; }
+    .b2c-block h2 { color: #fff; margin-bottom: 8px; }
+    .b2c-block > p { color: #b8b8cc; margin-bottom: 24px; }
+    .b2c-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .b2c-step { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 18px; }
+    .b2c-step-num { font-size: 0.8rem; font-weight: 700; color: #fbbf24; margin-bottom: 6px; }
+    .b2c-step h4 { color: #fff; font-size: 1rem; margin-bottom: 6px; }
+    .b2c-step p { color: #b8b8cc; font-size: 0.88rem; }
+    .b2c-note { margin-top: 20px; font-size: 0.88rem; color: #b8b8cc; }
+
+    /* FAQ */
+    .faq-item { background: #fff; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+    .faq-item summary { padding: 18px 20px; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: #1a1a2e; }
+    .faq-item summary::after { content: "+"; font-size: 1.3rem; color: #ea580c; transition: transform 0.2s; }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-body { padding: 0 20px 18px; color: #5a5a6e; font-size: 0.95rem; }
+
+    /* Gallery */
+    .works-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 24px; }
+    .works-gallery img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; }
+    .works-gallery img:hover { transform: scale(1.02); }
 
     /* Form styles */
     .form-section-konstr { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 36px; margin: 48px 0; }
@@ -60,9 +114,11 @@
   <div class="header-inner">
     <div class="logo">Проектирование и деталировка</div>
     <nav class="nav">
+      <a href="#pains">Задачи</a>
       <a href="#services">Услуги</a>
-      <a href="#why">Преимущества</a>
+      <a href="#prices">Цены</a>
       <a href="#process">Процесс</a>
+      <a href="#faq">FAQ</a>
       <a href="#contacts">Контакты</a>
     </nav>
   </div>
@@ -71,126 +127,301 @@
 <section class="hero">
   <div class="hero-split">
     <div class="hero-text">
-      <h1 class="animate">Проектирование и технологическая <span class="hero-accent">подготовка</span></h1>
-      <p class="animate delay-1">Собственное конструкторское бюро. Проектируем корпусную мебель, малые архитектурные формы и изделия из древесных плит. Работаем в БАЗИС-Мебельщик и смежных системах.</p>
+      <h1 class="animate">Проектирование мебели в БАЗИС: чертежи, с которых цех <span class="hero-accent">начинает работу</span></h1>
+      <p class="animate delay-1">Собственное конструкторское бюро. Деталировка, карты раскроя, присадка, управляющие программы для ЧПУ. Два конструктора с 20-летним опытом — и своё мебельное производство, которое проверяет каждый проект на практике.</p>
       <div class="hero-btns animate delay-2">
-        <a class="btn btn-orange" href="#form">Обсудить проект</a>
-        <a class="btn btn-outline" href="mebel.html">Мебельное направление</a>
+        <a class="btn btn-orange" href="#form">Прислать ТЗ на оценку</a>
+        <a class="btn btn-outline" href="#prices">Смотреть цены</a>
       </div>
     </div>
     <div class="hero-media animate delay-2">
-      <img src="img/konstruktor/hero1.jpg" alt="CNC-станок и производство мебели: точная обработка деталей">
+      <img src="img/konstruktor/g1.png" alt="Рабочее место конструктора мебели: сборочные чертежи шкафа и 3D-модель на экране">
     </div>
   </div>
 </section>
 
 <main class="container">
 
-  <div class="photo-wide animate">
-    <img src="img/konstruktor/hero2.jpg" alt="Рабочее место инженера-конструктора: чертежи, инструменты, 3D-модели">
+  <div class="stats-bar animate">
+    <div class="stat-item">
+      <div class="stat-num">20 лет</div>
+      <div class="stat-label">конструкторского опыта у каждого из двух конструкторов</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">26 лет</div>
+      <div class="stat-label">производим мебель сами — проекты не оторваны от цеха</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">.b3d + PDF</div>
+      <div class="stat-label">родной файл БАЗИСа и полный комплект чертежей</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1 день</div>
+      <div class="stat-label">на ответ по заявке с оценкой стоимости и сроков</div>
+    </div>
   </div>
 
+  <hr class="section-divider">
+
+  <section id="pains">
+    <h2 class="section-title animate">Знакомые ситуации?</h2>
+    <p class="section-subtitle animate delay-1">С этим к нам приходят производства и салоны</p>
+    <div class="pain-grid animate delay-1">
+      <div class="pain-card">
+        <h4>Цех стоит, чертежей нет</h4>
+        <p>Материал на складе, станки готовы — а конструктор не вытягивает поток. Производственный цикл растягивается на недели.</p>
+      </div>
+      <div class="pain-card">
+        <h4>Ошибка в КД = брак в цеху</h4>
+        <p>Перепутанная кромка, забытая присадка, неучтённый зазор — деталь уходит в мусор вместе с материалом и временем.</p>
+      </div>
+      <div class="pain-card">
+        <h4>Штатный конструктор — дорого</h4>
+        <p>Зарплата, налоги, лицензия БАЗИС, отпуск и больничный — под 150–200 тыс ₽ в месяц. И всё на одном человеке.</p>
+      </div>
+      <div class="pain-card">
+        <h4>Пики загрузки</h4>
+        <p>Сезон или удачная реклама — и заказов вдвое больше. Второго конструктора в штат на два месяца не нанять.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
   <section id="services">
-    <h2 class="section-title animate">Что делаем</h2>
-    <p class="section-subtitle animate delay-1">Полный цикл от эскиза до управляющих программ</p>
+    <h2 class="section-title animate">Что вы получаете</h2>
+    <p class="section-subtitle animate delay-1">Полный комплект документов — от 3D-модели до файлов для станка</p>
     <div class="features">
       <div class="feature animate delay-1">
         <div class="feature-icon feature-icon-orange">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"></path></svg>
         </div>
-        <h4>Мебельное проектирование</h4>
-        <p>Корпусная, встроенная, кухонная и офисная мебель. Чертежи, спецификации, деталировка, схемы сборки.</p>
+        <h4>Проект в БАЗИС-Мебельщик</h4>
+        <p>3D-модель, виды, разрезы, спецификация фурнитуры с артикулами. Родной файл .b3d — открывается на любом производстве с БАЗИС.</p>
       </div>
       <div class="feature animate delay-2">
         <div class="feature-icon feature-icon-blue">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
         </div>
-        <h4>БАЗИС-Мебельщик</h4>
-        <p>Полный цикл: от эскиза до производственных карт и управляющих программ для станков с ЧПУ.</p>
+        <h4>Деталировка и раскрой</h4>
+        <p>Чертежи каждой детали, карты раскроя с оптимизацией материала, схемы кромления, сборочные чертежи.</p>
       </div>
       <div class="feature animate delay-3">
         <div class="feature-icon feature-icon-green">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10M18 20V4M6 20v-4"></path></svg>
         </div>
-        <h4>Технологическая подготовка</h4>
-        <p>Раскрой, оптимизация материала, присадочные карты, схемы кромления, ведомости фурнитуры.</p>
+        <h4>Присадка и ЧПУ</h4>
+        <p>Присадочные карты и управляющие программы под ваш парк станков. Файлы загружаются в оборудование без ручной доработки.</p>
       </div>
       <div class="feature animate delay-4">
         <div class="feature-icon feature-icon-purple">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
         </div>
-        <h4>Сопровождение производства</h4>
-        <p>Консультации на сборке, корректировки по замерам, внесение изменений в серию.</p>
+        <h4>Сопровождение</h4>
+        <p>Правки по замечаниям, консультации сборщиков, корректировки по фактическим замерам — до запуска в серию.</p>
       </div>
     </div>
+
+    <div class="photo-wide animate" style="margin-top:32px;">
+      <img src="img/konstruktor/hero.png" alt="Интерфейс мебельного CAD: сборка изделия, спецификация деталей и карты раскроя">
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section id="scenarios">
+    <h2 class="section-title animate">Как с нами работать</h2>
+    <p class="section-subtitle animate delay-1">Три типовых сценария</p>
+    <div class="scenario-grid animate delay-1">
+      <div class="scenario-card">
+        <div class="scenario-tag">Сценарий 1</div>
+        <h4>«БАЗИС стоит, рук не хватает»</h4>
+        <p>Передаёте нам поток или пиковый объём. Мы возвращаем готовые .b3d и PDF — ваш технолог открывает проект и запускает в работу без переделок.</p>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-tag">Сценарий 2</div>
+        <h4>«Запускаем производство»</h4>
+        <p>Нанимать конструктора в штат рано, а заказы уже есть. Закрываем проектирование полностью: от эскиза клиента до карт раскроя и УП для ЧПУ.</p>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-tag">Сценарий 3</div>
+        <h4>«Нужен разовый проект»</h4>
+        <p>Нестандартное изделие, встройка, сложный узел — то, на что у штатного конструктора уйдёт неделя. Сделаем точечно, с проверкой на собственном производстве.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section id="prices">
+    <h2 class="section-title animate">Цены</h2>
+    <p class="section-subtitle animate delay-1">Прозрачный расчёт от площади плитных материалов</p>
+    <table class="price-table animate delay-1">
+      <thead>
+        <tr>
+          <th>Пакет</th>
+          <th>Что входит</th>
+          <th>Цена</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Согласовательная документация</strong></td>
+          <td>3D-модель, виды с фасадами и без, разрезы, спецификация фурнитуры — для утверждения проекта с клиентом</td>
+          <td class="price-value">400 ₽/м²</td>
+        </tr>
+        <tr>
+          <td><strong>Рабочая документация</strong></td>
+          <td>Деталировка, карты раскроя, присадочные карты, ведомости материалов и фурнитуры, файлы для ЧПУ</td>
+          <td class="price-value">400 ₽/м²</td>
+        </tr>
+        <tr>
+          <td><strong>Полный пакет «под ключ»</strong></td>
+          <td>Бриф, эскизный проект, согласовательная и рабочая документация — от ТЗ до запуска в производство</td>
+          <td class="price-value">650 ₽/м²</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="price-note">Цена считается от суммарной площади плитных материалов изделия (ЛДСП, МДФ, ХДФ). Нестандартные изделия (угловые, радиусные, встройка) — коэффициент +15–35%. Точный расчёт — после вашего ТЗ, бесплатно.</p>
   </section>
 
   <hr class="section-divider">
 
   <section id="why">
-    <h2 class="section-title animate">Почему с нами</h2>
-    <p class="section-subtitle animate delay-1">Собственное бюро, не аутсорс</p>
+    <h2 class="section-title animate">Почему нам доверяют проекты</h2>
+    <p class="section-subtitle animate delay-1">Мы не «рисовальщики» — мы производственники</p>
     <div class="grid">
       <div class="card card-accent-orange animate delay-1">
-        <h3>Гибкость загрузки</h3>
-        <p>Масштабируем объём работ под ваши задачи: от разового проекта до постоянного сопровождения производства.</p>
+        <h3>26 лет делаем мебель сами</h3>
+        <p>У нас собственное мебельное производство и салон. Каждый проект мы оцениваем глазами технолога и сборщика — ошибки ловим до станка, а не после.</p>
       </div>
       <div class="card card-accent-blue animate delay-2">
-        <h3>Готовые управляющие программы</h3>
-        <p>Отдаём файлы, которые загружаются сразу в оборудование. Минимум ручной работы на производстве.</p>
+        <h3>Файлы, готовые к работе</h3>
+        <p>Родной .b3d и УП под ваш постпроцессор. Никаких конвертаций через DXF, в которых теряются кромки, зазоры и атрибуты деталей.</p>
       </div>
       <div class="card card-accent-green animate delay-3">
-        <h3>Связь с цифровыми каналами</h3>
-        <p>Наше IT-направление помогает автоматизировать приём заявок и передавать их в проектирование без потерь.</p>
+        <h3>IT-команда рядом</h3>
+        <p>Наше IT-направление разрабатывает конфигураторы и автоматизацию. Можем связать приём заявок с проектированием — без потерь между менеджером и конструктором.</p>
+      </div>
+    </div>
+
+    <h3 class="animate" style="margin-top:36px;">Мебель, которую мы спроектировали и сделали сами</h3>
+    <div class="works-gallery animate delay-1">
+      <img src="img/mebel/g15.jpg" alt="Кухня с фрезерованными фасадами — спроектирована и изготовлена нами">
+      <img src="img/mebel/g11.jpg" alt="Детская с рабочим столом и стеллажами — наш проект и производство">
+      <img src="img/mebel/g7.jpg" alt="Шкаф-купе с наполнением — наш проект и производство">
+      <img src="img/mebel/g17.jpg" alt="Мебель для ванной комнаты — наш проект и производство">
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section id="b2c" class="b2c-block animate">
+    <h2>Частным клиентам: от идеи до мебели с проект-менеджером</h2>
+    <p>Хотите мебель на заказ, но не знаете, с чего начать? Мы добавили в процесс отдельный этап — проект-менеджера, который говорит с вами на человеческом языке, а с конструктором — на техническом.</p>
+    <div class="b2c-steps">
+      <div class="b2c-step">
+        <div class="b2c-step-num">Шаг 1</div>
+        <h4>Соберите идею</h4>
+        <p>Пришлите фото, эскиз или соберите мебель в нашем онлайн-конфигураторе — прямо на сайте.</p>
+      </div>
+      <div class="b2c-step">
+        <div class="b2c-step-num">Шаг 2</div>
+        <h4>Проект-менеджер</h4>
+        <p>Обсуждает с вами задачу, материалы, фурнитуру и бюджет. Всё согласовывает и формирует техническое задание.</p>
+      </div>
+      <div class="b2c-step">
+        <div class="b2c-step-num">Шаг 3</div>
+        <h4>Конструктор</h4>
+        <p>Строит 3D-модель в БАЗИС, вы видите будущую мебель и утверждаете проект до производства.</p>
+      </div>
+      <div class="b2c-step">
+        <div class="b2c-step-num">Шаг 4</div>
+        <h4>Производство</h4>
+        <p>Изготавливаем на собственном производстве, привозим и собираем. Без цепочки посредников.</p>
+      </div>
+    </div>
+    <p class="b2c-note">Сопровождение проект-менеджером — отдельный этап работы. Условия обсуждаем на брифе, до старта вы точно знаете, что и когда происходит.</p>
+  </section>
+
+  <hr class="section-divider">
+
+  <section id="process">
+    <h2 class="section-title animate">Процесс работы</h2>
+    <p class="section-subtitle animate delay-1">От заявки до файлов для цеха</p>
+    <div class="steps">
+      <div class="step animate delay-1">
+        <h4>ТЗ и оценка</h4>
+        <p>Присылаете эскизы, планы или описание. В течение рабочего дня возвращаем стоимость и сроки.</p>
+      </div>
+      <div class="step animate delay-2">
+        <h4>3D-модель и согласование</h4>
+        <p>Строим модель в БАЗИС, визуализируем, корректируем по вашим замечаниям до полного утверждения.</p>
+      </div>
+      <div class="step animate delay-3">
+        <h4>Документация и файлы</h4>
+        <p>Готовим деталировку, карты раскроя, присадку и управляющие программы под ваше оборудование.</p>
+      </div>
+      <div class="step animate delay-4">
+        <h4>Сопровождение</h4>
+        <p>Отвечаем на вопросы производства, вносим правки по фактическим замерам, доводим проект до результата.</p>
       </div>
     </div>
   </section>
 
   <hr class="section-divider">
 
-  <section id="process">
-    <h2 class="section-title animate">Пример процесса</h2>
-    <p class="section-subtitle animate delay-1">От замера до производства</p>
-    <div class="steps">
-      <div class="step animate delay-1">
-        <h4>Замер и эскиз</h4>
-        <p>Собираем пожелания по стилю, материалам и фурнитуре. Делаем примерный расклад и бюджет.</p>
-      </div>
-      <div class="step animate delay-2">
-        <h4>3D-модель и согласование</h4>
-        <p>Строим модель в БАЗИСе, визуализируем, корректируем по замечаниям заказчика.</p>
-      </div>
-      <div class="step animate delay-3">
-        <h4>Деталировка и раскрой</h4>
-        <p>Готовим производственные документы, карты раскроя и управляющие программы для станков.</p>
-      </div>
-      <div class="step animate delay-4">
-        <h4>Сопровождение сборки</h4>
-        <p>Консультируем сборщиков, вносим оперативные правки при нюансах на объекте.</p>
-      </div>
+  <section id="faq">
+    <h2 class="section-title animate">Частые вопросы</h2>
+    <p class="section-subtitle animate delay-1">Коротко о главном</p>
+    <div class="animate delay-1">
+      <details class="faq-item">
+        <summary>В каких форматах вы отдаёте проект?</summary>
+        <div class="faq-body">Родной файл БАЗИС-Мебельщик (.b3d) и полный комплект PDF-чертежей: виды, разрезы, деталировка, карты раскроя, ведомости. Управляющие программы — под постпроцессор вашего станка.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Сколько времени занимает проект?</summary>
+        <div class="faq-body">Зависит от объёма и сложности. Типовое изделие — несколько рабочих дней, проект квартиры — дольше. Точный срок называем вместе с оценкой стоимости, до начала работы.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Правки входят в стоимость?</summary>
+        <div class="faq-body">Да. Корректировки по вашим замечаниям на этапе согласования и оперативные правки по фактическим замерам — часть работы, а не отдельный счёт.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Мы работаем в Pro100 / у нас нет БАЗИС. Нам подойдёт?</summary>
+        <div class="faq-body">Да. Присылаете проект или эскиз в любом виде — мы пересобираем его в БАЗИС с нуля и отдаём PDF-альбом для клиента и производственные файлы для цеха. Переучивать вашу команду не нужно.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Работаете ли вы с частными клиентами?</summary>
+        <div class="faq-body">Да. Для частных заказов работает связка «онлайн-конфигуратор + проект-менеджер»: вы описываете задачу, менеджер всё согласовывает, конструктор проектирует, а производим мебель мы сами.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Как считается цена?</summary>
+        <div class="faq-body">От суммарной площади плитных материалов изделия. Согласовательная документация — 400 ₽/м², рабочая — 400 ₽/м², полный пакет — 650 ₽/м². Нестандарт — коэффициент +15–35%. Расчёт по вашему ТЗ — бесплатно.</div>
+      </details>
     </div>
   </section>
 
   <!-- Form -->
   <section id="form" class="form-section-konstr animate">
-    <h2>Обсудить проект</h2>
-    <p>Оставьте заявку — свяжемся в течение дня. Без спама, только по делу.</p>
+    <h2>Прислать ТЗ на оценку</h2>
+    <p>Опишите задачу — в течение рабочего дня вернёмся со стоимостью и сроками. Без спама, только по делу.</p>
     <form data-form="khrom" data-source="konstruktor" style="max-width:680px;margin:0 auto;">
       <div class="form-grid-konstr">
         <input type="text" name="name" class="form-field-konstr" placeholder="Ваше имя" required>
         <input type="tel" name="phone" class="form-field-konstr" placeholder="Телефон" required>
         <input type="email" name="email" class="form-field-konstr" placeholder="Email">
         <select name="direction" class="form-field-konstr">
-          <option value="" disabled selected>Направление</option>
-          <option value="Проектирование">Проектирование мебели</option>
-          <option value="Деталировка">Деталировка и ЧПУ</option>
-          <option value="БАЗИС">Работа в БАЗИСе</option>
+          <option value="" disabled selected>Кто вы</option>
+          <option value="Производство">Мебельное производство / фабрика</option>
+          <option value="Салон">Мебельный салон / дизайн-студия</option>
+          <option value="Частный клиент">Частный клиент</option>
           <option value="Другое">Другое</option>
         </select>
-        <textarea name="message" class="form-field-konstr textarea" placeholder="Опишите задачу..."></textarea>
+        <textarea name="message" class="form-field-konstr textarea" placeholder="Опишите задачу: что за изделия, примерный объём, есть ли ЧПУ..."></textarea>
       </div>
       <div style="text-align:center;margin-top:14px;">
-        <button type="submit" class="btn-submit-konstr">Отправить заявку</button>
+        <button type="submit" class="btn-submit-konstr">Получить оценку проекта</button>
         <p style="color:#8a8a9a;font-size:0.82rem;margin-top:10px;">Или позвоните: <a href="tel:+79139094891" style="color:#ea580c;">+7 (913) 909-48-91</a></p>
       </div>
     </form>
@@ -233,7 +464,6 @@
         <h4>Связаться</h4>
         <a href="tel:+79139094891" class="phone-link">+7 (913) 909-48-91</a>
         <a href="tel:+79628356365" class="phone-link">+7 (962) 835-63-65</a>
-        <a href="mailto:proj@example.ru">proj@example.ru</a>
         <a href="https://t.me/KonstantKH" target="_blank">Telegram</a>
       </div>
       <div class="footer-col">
