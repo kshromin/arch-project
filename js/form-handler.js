@@ -38,6 +38,25 @@ async function handleFormSubmit(e) {
 
   // Собираем данные
   const formData = new FormData(form);
+  const fileInput = form.querySelector('input[type="file"]');
+  const fileName = fileInput && fileInput.files[0] ? fileInput.files[0].name : '';
+  
+  let message = formData.get('message') || '';
+  if (fileName) {
+    message = '[Файл: ' + fileName + ']\n' + message;
+  }
+
+  const data = {
+    timestamp: new Date().toISOString(),
+    source: form.dataset.source || 'site',
+    page: window.location.pathname,
+    name: formData.get('name') || '',
+    phone: formData.get('phone') || '',
+    email: formData.get('email') || '',
+    message: message,
+    direction: formData.get('direction') || ''
+  };
+  const formData = new FormData(form);
   const data = {
     timestamp: new Date().toISOString(),
     source: form.dataset.source || 'site',
